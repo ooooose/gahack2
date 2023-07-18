@@ -33,7 +33,7 @@ services:
       TZ: 'Asia/Tokyo'
   front:
     build:
-      context: ./front
+      context: ./front/
       dockerfile: Dockerfile
     volumes:
       - './front:/user/src/app'
