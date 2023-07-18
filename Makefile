@@ -7,13 +7,16 @@ build:
 stop:
 	docker-compose stop
 
+down:
+	docker-compose down
+
 ps:
 	docker-compose ps -a
 
 logs:
 	docker-compose logs -f api
 
-bundle-install:
+bundle:
 	docker-compose run --rm api bundle install --without production
 
 db-migrate:
