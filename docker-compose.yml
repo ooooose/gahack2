@@ -31,5 +31,18 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       TZ: 'Asia/Tokyo'
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    volumes:
+      - './front:/user/src/app'
+    environment:
+      - WDS_SOCKET_PORT=0
+    ports:
+      - '8000:3000'
+    command: sh -c "yarn start"
+    tty: true
+    stdin_open: true
 volumes:
   mysql_data:
