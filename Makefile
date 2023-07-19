@@ -33,3 +33,6 @@ routes:
 
 console:
 	docker-compose run --rm api bin/rails c
+
+lint:
+	docker-compose run --rm front npx eslint src/ --fix
