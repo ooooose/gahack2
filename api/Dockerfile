@@ -3,7 +3,7 @@ ENV TZ=Asia/Tokyo
 ENV RAILS_ENV=development
 ENV APP_ROOT /myapp
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+RUN apt-get update -qq && apt-get install -y build-essential postgresql-client
 
 WORKDIR ${APP_ROOT}
 COPY Gemfile Gemfile.lock ${APP_ROOT}

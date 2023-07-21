@@ -19,8 +19,23 @@ logs:
 bundle:
 	docker-compose run --rm api bundle install --without production
 
+g-model:
+	docker-compose run --rm api bin/rails g model $(NAME)
+
+d-model:
+	docker-compose run --rm api bin/rails d model $(NAME)
+
+g-controller:
+	docker-compose run --rm api bin/rails g controller $(NAME)
+
+d-controller:
+	docker-compose run --rm api bin/rails d controller $(NAME)
+
 db-migrate:
-	docker-compose run --rm api bundle exec rails db:migrate RAILS_ENV=development
+	docker-compose run --rm api bundle exec rails db:migrate
+
+fresh:
+	docker-compose run --rm api bundle exec rails db:migrate:reset
 
 rubocop:
 	docker-compose run --rm api bundle exec rubocop -a
