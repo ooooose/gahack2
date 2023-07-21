@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
   it "is valid user" do
@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   it "is valid without description" do
     user = create(:user, description: nil)
     expect(user).to be_valid
-  end 
+  end
 
   it "is invalid without name" do
     user = build(:user, name: nil)
@@ -22,5 +22,4 @@ RSpec.describe User, type: :model do
     user.valid?
     expect(user.errors[:uid]).to include("can't be blank")
   end
-
 end
