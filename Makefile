@@ -34,6 +34,9 @@ d-controller:
 db-migrate:
 	docker-compose run --rm api bundle exec rails db:migrate
 
+fresh:
+	docker-compose run --rm api bundle exec rails db:migrate:reset
+
 rubocop:
 	docker-compose run --rm api bundle exec rubocop -a
 
