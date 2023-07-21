@@ -20,7 +20,7 @@ bundle:
 	docker-compose run --rm api bundle install --without production
 
 db-migrate:
-	docker-compose run --rm api bundle exec rails db:migrate RAILS_ENV=development
+	docker-compose run --rm api bundle exec rails db:migrate
 
 rubocop:
 	docker-compose run --rm api bundle exec rubocop -a
