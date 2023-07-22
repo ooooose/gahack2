@@ -1,4 +1,4 @@
-# Table name: themes 
+# Table name: themes
 #
 #  id         :bigint           not null, primary key
 #  title      :string           not null
@@ -6,7 +6,7 @@
 #  updated_at :datetime         not null
 #
 class Theme < ApplicationRecord
-  has_many :pictures, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :pictures, -> { order(created_at: :desc) }, inverse_of: :theme, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
 end

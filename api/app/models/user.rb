@@ -14,7 +14,7 @@
 #  index_users_on_uid  (uid) UNIQUE
 #
 class User < ApplicationRecord
-  has_many :pictures, -> { order(created_at: :desc) }, dependent: :destroy
+  has_many :pictures, -> { order(created_at: :desc) }, inverse_of: :user, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :uid, presence: true, uniqueness: true
