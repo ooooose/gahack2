@@ -14,4 +14,7 @@
 class Picture < ApplicationRecord
   belongs_to :user
   belongs_to :theme
+
+  validates :image, presence: true
+  validates :frame_id, presence: true
 end
