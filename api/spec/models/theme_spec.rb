@@ -7,13 +7,9 @@ RSpec.describe Theme, type: :model do
   end
 
   it "is invalid theme of duplicated title" do
-    Theme.create(
-      title: "ドラえもん",
-    )
+    create(:theme, title: "ドラえもん")
 
-    theme = Theme.new(
-      title: "ドラえもん",
-    )
+    theme = build(:theme, title: "ドラえもん")
     theme.valid?
     expect(theme).not_to be_valid
   end
