@@ -8,6 +8,7 @@ class Api::V1::PicturesController < BaseController
   end
 
   private
+
     def set_picture
       @picture = Picture.find(params[:id])
     end
