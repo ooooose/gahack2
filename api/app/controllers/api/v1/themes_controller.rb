@@ -2,22 +2,13 @@ class Api::V1::ThemesController < BaseController
   before_action :set_theme, only: %i[show]
 
   def index
-    themes = Theme.includes(:picture).all
-    render_json = ActiveModelSerializers::SerializableResource.new(
-      resource: themes,
-      each_serializer: ThemeSerializer,
-    ).as_json
+    themes = Theme.includes(:pictures).all
 
-    render json: render_json
+    render json: themes
   end
 
   def show
-    render_json = ActiveModelSerializers::SerializableResource.new(
-      resource: @theme,
-      serializer: ThemeSerializer,
-    ).as_json
-
-    render json: render_json
+    render json: @theme
   end
 
   private
