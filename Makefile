@@ -31,11 +31,20 @@ g-controller:
 d-controller:
 	docker-compose run --rm api bin/rails d controller $(NAME)
 
+g-serializer:
+	docker-compose run --rm api bin/rails g serializer $(NAME)
+
+d-serializer:
+	docker-compose run --rm api bin/rails d serializer $(NAME)
+
 db-migrate:
-	docker-compose run --rm api bundle exec rails db:migrate
+	docker-compose run --rm api bin/rails db:migrate
 
 fresh:
-	docker-compose run --rm api bundle exec rails db:migrate:reset
+	docker-compose run --rm api bin/rails db:migrate:reset
+
+seed:
+	docker-compose run --rm api bin/rails db:seed
 
 rubocop:
 	docker-compose run --rm api bundle exec rubocop -a
