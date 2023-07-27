@@ -2,6 +2,8 @@ require "jwt"
 require "net/http"
 
 module FirebaseAuth
+  extend ActiveSupport::Concern
+
   ALGORITHM = "RS256".freeze
 
   ISSUER_PREFIX = "https://securetoken.google.com/".freeze
@@ -77,7 +79,7 @@ module FirebaseAuth
     return certificates
   end
 
-  def verify(token. key)
+  def verify(token, key)
     errors = []
 
     begin
