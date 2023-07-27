@@ -1,5 +1,5 @@
 class Api::V1::PicturesController < BaseController
-  before_action :set_picture, only: %i[show]
+  before_action :set_picture, only: %i[show destroy]
 
   def index
     pictures = Picture.includes(:user, :theme).all
@@ -11,9 +11,28 @@ class Api::V1::PicturesController < BaseController
     render json: @picture
   end
 
+  def create
+    picture = @current_user.build(picture_params)
+
+    if picture.save
+      render json: picture
+    else
+      render json: { status: 400 }
+    end
+  end
+
+  def destroy
+    @picture.destroy!
+    render json: @picture
+  end
+
   private
 
     def set_picture
       @picture = Picture.includes(:user, :theme).find(params[:id])
+    end
+
+    def picture_params
+      params.require(:picture).permit(:image, :theme_id, :frame_id)
     end
 end
