@@ -28,28 +28,27 @@ module FirebaseAuth
         }
       )
     end
-    return { errors: errors.join(" / ") }
+    { errors: errors.join(" / ") }
   end
 
   def decode_unverified(token)
     decode_token(
-      token: token,
+      token:,
       key: nil,
       verify: false,
       options: {
         algorithm: ALGORITHM,
-      },
+      }
     )
   end
 
-  def decode_token(tokne:, key:, verify:, options:)
+  def decode_token(token:, key:, verify:, options:)
     JWT.decode(token, key, verify, options)
   end
 
   def get_public_key(header)
     certificate = find_certificate(header["kid"])
-    public_key = OpenSSL::X509::Certificate.new(certificate).public_key
-    return public_key
+    OpenSSL::X509::Certificate.new(certificate).public_key
   rescue OpenSSL::X509::CertificateError => e
     raise "Invalid certificate! #{e.message}"
   end
@@ -60,8 +59,7 @@ module FirebaseAuth
       rails "Invalid 'kid', didn't correspond with one of valid public keys."
     end
 
-    valid_certificate = certificates[kid]
-    return valid_certificate
+    certificates[kid]
   end
 
   def fetch_certificates
@@ -71,24 +69,23 @@ module FirebaseAuth
 
     req = Net::HTTP::Get.new(uri.path)
     res = https.request(req)
-    unless res.code == '200'
+    unless res.code == "200"
       rails "Error: can't obtain valid public key certificates from Google."
     end
 
-    certificates = JSON.parse(res.body)
-    return certificates
+    JSON.parse(res.body)
   end
 
   def verify(token, key)
     errors = []
 
     begin
-      decoded_tokne =
+      decode_token =
         decode_token(
-          token: token,
-          key: key,
+          token:,
+          key:,
           verify: true,
-          options: decode_options,
+          options: decode_options
         )
     rescue JWT::ExpiredSignature
       errors << "Firebase ID token has expired. Get a fresh token from your app and try again."
@@ -119,9 +116,9 @@ module FirebaseAuth
       errors << "Invalid ID token. 'alg' must be '#{ALGORITHM}', but got #{alg}."
     end
 
-    return errors
+    errors
   end
-  
+
   def decode_options
     {
       iss: ISSUER_PREFIX + FIREBASE_PROJECT_ID,

@@ -24,10 +24,10 @@ RSpec.describe Picture, type: :model do
   end
 
   it "is reflected on association for users" do
-    expect(Picture.reflect_on_association(:user).macro).to eq :belongs_to
+    expect(described_class.reflect_on_association(:user).macro).to eq :belongs_to
   end
 
   it "is reflected on association for themes" do
-    expect(Picture.reflect_on_association(:theme).macro).to eq :belongs_to
+    expect(described_class.reflect_on_association(:theme).macro).to eq :belongs_to
   end
 end
