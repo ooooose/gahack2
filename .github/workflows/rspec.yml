@@ -51,6 +51,6 @@ jobs:
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
 
-      - neme: Run RSpec
+      - name: Run RSpec
         working-directory: ./api
         run: bundle exec rspec
