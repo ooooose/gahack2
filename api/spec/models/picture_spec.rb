@@ -22,4 +22,12 @@ RSpec.describe Picture, type: :model do
     picture.valid?
     expect(picture).not_to be_valid
   end
+
+  it "is reflected on association for users" do
+    expect(Picture.reflect_on_association(:user).macro).to eq :belongs_to
+  end
+
+  it "is reflected on association for themes" do
+    expect(Picture.reflect_on_association(:theme).macro).to eq :belongs_to
+  end
 end
