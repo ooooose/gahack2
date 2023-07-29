@@ -15,8 +15,18 @@
 #
 class User < ApplicationRecord
   has_many :pictures, -> { order(created_at: :desc) }, inverse_of: :user, dependent: :destroy
+  has_many :likes, inverse_of: :user, dependent: :destroy
+  has_many :like_pictures, through: :likes, source: :picture
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :uid, presence: true, uniqueness: true
   validates :description, length: { maximum: 160 }
+
+  def like(picture)
+    like_pictures << picture
+  end
+
+  def unlike(picture)
+    like_pictures.destroy(picture)
+  end
 end
