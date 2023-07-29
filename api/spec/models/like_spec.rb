@@ -2,12 +2,10 @@ require "rails_helper"
 
 RSpec.describe Like, type: :model do
   describe "create like model" do
-    before do
-      @user = create(:user)
-      @picture = create(:picture)
-    end
-    let!(:like) { create(:like, user_id: @user.id, picture_id: @picture.id) }
-    let(:other_like) { build(:like, user_id: @user.id, picture_id: @picture.id) }
+    let!(:user) { create(:user) }
+    let!(:picture) { create(:picture) }
+    let!(:like) { create(:like, user_id: user.id, picture_id: picture.id) }
+    let(:other_like) { build(:like, user_id: user.id, picture_id: picture.id) }
 
     context "when is valid like" do
       it "is valid like instance" do

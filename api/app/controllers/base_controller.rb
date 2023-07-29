@@ -9,7 +9,7 @@ class BaseController < ApplicationController
       result = verify_id_token(token)
 
       if result[:errors]
-        render_400(nil, result[:errors])
+        render_error400(nil, result[:errors])
       else
         @_current_user = User.find_or_create_user(result)
       end

@@ -55,7 +55,7 @@ module FirebaseAuth
 
   def find_certificate(kid)
     certificates = fetch_certificates
-    unless certificates.key?(kid)
+    unless certificates.has_key?(kid)
       rails "Invalid 'kid', didn't correspond with one of valid public keys."
     end
 
