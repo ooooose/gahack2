@@ -14,6 +14,7 @@
 class Picture < ApplicationRecord
   belongs_to :user
   belongs_to :theme
+  has_many :likes, inverse_of: :picture, dependent: :destroy
 
   validates :image, presence: true
   validates :frame_id, presence: true
