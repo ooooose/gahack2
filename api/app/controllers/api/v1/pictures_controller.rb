@@ -4,11 +4,11 @@ class Api::V1::PicturesController < BaseController
   def index
     pictures = Picture.includes(:user, :theme).all
 
-    render json: pictures
+    render json: pictures, each_serializer: Api::V1::PictureSerializer
   end
 
   def show
-    render json: @picture
+    render json: @picture, serializer: Api::V1::PictureSerializer
   end
 
   def create
