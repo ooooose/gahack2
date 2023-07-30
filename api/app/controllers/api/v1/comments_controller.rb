@@ -1,6 +1,5 @@
 class Api::V1::CommentsController < BaseController
-
-  def index 
+  def index
     picture = Picture.include(:user, :theme).find(params[:picture_id])
     comments = picture.comments
 
