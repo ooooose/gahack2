@@ -4,11 +4,11 @@ class Api::V1::ThemesController < BaseController
   def index
     themes = Theme.includes(:pictures).all
 
-    render json: themes
+    render json: themes, each_serializer: Api::V1::ThemeSerializer
   end
 
   def show
-    render json: @theme
+    render json: @theme, serializer: Api::V1::ThemeSerializer
   end
 
   private
