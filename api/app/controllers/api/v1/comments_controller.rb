@@ -1,5 +1,4 @@
 class Api::V1::CommentsController < BaseController
-
   def index
     picture = Picture.include(:user, :theme).find(params[:picture_id])
     comments = picture.comments
@@ -16,7 +15,7 @@ class Api::V1::CommentsController < BaseController
     end
   end
 
-  def destroy 
+  def destroy
     @comment = current_user.comments.find(params[:id])
     @comment.destroy!
     render json: { status: :ok, message: "comment successfully deleted." }
