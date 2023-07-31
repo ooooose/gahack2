@@ -60,3 +60,6 @@ console:
 
 lint:
 	docker-compose run --rm front npx eslint src/ --fix
+
+npm-i:
+	docker-compose run --rm front npm i ${NAME}
