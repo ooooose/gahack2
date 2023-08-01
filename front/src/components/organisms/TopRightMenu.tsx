@@ -9,7 +9,7 @@ const TopRightMenu = () => {
       <Box display={"flex"} float={"right"} marginRight={2}>
         <Avatar />
         <Menu />
-      </Box>   
+      </Box>
     </>
   )
 }

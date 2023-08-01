@@ -7,7 +7,7 @@ const Avatar = () => {
   return (
     <>
       <Box p={2}>
-        <ChakraAvatar name='Avatar' src='https://bit.ly/broken-link' />
+        <ChakraAvatar src='https://bit.ly/broken-link' />
       </Box>
     </>
   )
