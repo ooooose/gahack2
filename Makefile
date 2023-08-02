@@ -59,7 +59,7 @@ console:
 	docker-compose run --rm api bin/rails c
 
 lint:
-	docker-compose run --rm front npx eslint src/ --fix
+	docker-compose run --rm front npm run lint
 
-npm-i:
-	docker-compose run --rm front npm i ${NAME}
+fix:
+	docker-compose run --rm front npm run fix
