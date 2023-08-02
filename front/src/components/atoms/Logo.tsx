@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
 import { Image, Heading, Box } from '@chakra-ui/react';
 
 const Logo = () => {
@@ -7,9 +8,11 @@ const Logo = () => {
     <>
       <Box p={2} float="left">
         {/* <Image src="" /> */}
-        <Heading as="h2" size="2xl">
-          画HACK
-        </Heading>
+        <Link className="App-link" to="/">
+          <Heading as="h2" size="2xl">
+            画HACK
+          </Heading>
+        </Link>
       </Box>
     </>
   );
