@@ -1,6 +1,6 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
-import Logo from "../atoms/Logo";
+import React from 'react';
+import { Box } from '@chakra-ui/react';
+import Logo from '../atoms/Logo';
 
 const FooterTopMenu = () => {
   return (
@@ -9,7 +9,7 @@ const FooterTopMenu = () => {
         <Logo />
       </Box>
     </>
-  )
-}
+  );
+};
 
 export default FooterTopMenu;

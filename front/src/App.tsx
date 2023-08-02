@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import { ChakraProvider, Center } from '@chakra-ui/react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
@@ -10,14 +10,14 @@ function App() {
   return (
     <ChakraProvider>
       <Header />
-      <Center h='500px'>
+      <Center h="500px">
         <Router>
           <AppRoutes />
         </Router>
       </Center>
       <Footer />
     </ChakraProvider>
-  )
+  );
 }
 
 export default App;
