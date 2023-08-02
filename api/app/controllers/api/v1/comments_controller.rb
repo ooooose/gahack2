@@ -1,5 +1,4 @@
 class Api::V1::CommentsController < BaseController
-
   def index
     picture = Picture.find(params[:picture_id])
     @comments = picture.comments
