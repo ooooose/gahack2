@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 import { Center } from '@chakra-ui/react';
 
-import Header from "../templates/Header";
-import Footer from "../templates/Footer";
+import Header from '../templates/Header';
+import Footer from '../templates/Footer';
 
-function PrivacyPolicy () {
+function PrivacyPolicy() {
   return (
     <>
       <Header />
@@ -14,7 +14,7 @@ function PrivacyPolicy () {
       </Center>
       <Footer />
     </>
-  )
+  );
 }
 
 export default PrivacyPolicy;

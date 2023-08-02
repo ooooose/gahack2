@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import Header from "../templates/Header";
-import Footer from "../templates/Footer";
-import { Center } from "@chakra-ui/react";
+import Header from '../templates/Header';
+import Footer from '../templates/Footer';
+import { Center } from '@chakra-ui/react';
 
-function AboutPage () {
+function AboutPage() {
   return (
     <>
       <Header />
@@ -13,7 +13,7 @@ function AboutPage () {
       </Center>
       <Footer />
     </>
-  )
+  );
 }
 
 export default AboutPage;
