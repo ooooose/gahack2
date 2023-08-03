@@ -7,7 +7,7 @@ import Logo from '../atoms/Logo';
 const Header = () => {
   return (
     <>
-      <Box w="100%" h="80px" p={3} position="sticky" top={0} zIndex="docked">
+      <Box w="100%" h="80px" p={2} position="sticky" top={0} zIndex="docked">
         <Box p={3}>
           <Logo />
         </Box>
