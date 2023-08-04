@@ -6,9 +6,7 @@ import { Box, Avatar as ChakraAvatar } from '@chakra-ui/react';
 const Avatar = () => {
   return (
     <>
-      <Box p={2}>
-        <ChakraAvatar src="https://bit.ly/broken-link" />
-      </Box>
+      <ChakraAvatar src="https://bit.ly/broken-link" />
     </>
   );
 };
