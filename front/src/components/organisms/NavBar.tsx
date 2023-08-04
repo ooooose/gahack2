@@ -17,22 +17,25 @@ interface MobileProps extends FlexProps {
 }
 const NavBar = ({ onOpen, ...rest }: MobileProps) => {
   return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      px={{ base: 4, md: 24 }}
+    <Box
+      px={6}
       height="20"
+      width="100%"
       alignItems="center"
       bg={useColorModeValue('white', 'gray.900')}
-      justifyContent="flex-start"
       {...rest}>
-      <IconButton
-        variant="outline"
-        onClick={onOpen}
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
-      <Logo />
-    </Flex>
+      <Box position={'fixed'}>
+        <Logo />
+      </Box>
+      <Box position={'fixed'} right={4}>
+        <IconButton
+          variant="outline"
+          onClick={onOpen}
+          aria-label="open menu"
+          icon={<FiMenu />}
+        />
+      </Box>
+    </Box>
   );
 };
 
