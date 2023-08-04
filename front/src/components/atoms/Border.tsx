@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { Box } from "@chakra-ui/react";
+import { Box } from '@chakra-ui/react';
 
-type BoxProps = React.ComponentProps<typeof Box>
+type BoxProps = React.ComponentProps<typeof Box>;
 
 const Border = ({ ...props }: BoxProps) => {
   return (
-    <Box {...props} >
+    <Box {...props}>
       <hr />
     </Box>
-  )
+  );
 };
 
 export default Border;

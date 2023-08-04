@@ -7,7 +7,7 @@ type LinkProps = React.ComponentProps<typeof ChakraLink> &
 
 const LinkText = ({ children, ...props }: LinkProps) => {
   return (
-    <ChakraLink as={RouterLink} {...props}>
+    <ChakraLink as={RouterLink} {...props} _hover={{ textDecoration: 'none' }}>
       {children}
     </ChakraLink>
   );
