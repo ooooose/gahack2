@@ -2,11 +2,16 @@ require "rails_helper"
 
 RSpec.describe "Api::V1::Pictures", type: :request do
   describe "GET /index" do
-    it "display all pictures" do
+    it "successfully display all pictures" do
+      create_list(:picture, 10)
+      get "/api/v1/pictures"
+      expect(response.status).to eq(200)
+    end
+
+    it "display all pictures correctly" do
       create_list(:picture, 10)
       get "/api/v1/pictures"
       json = JSON.parse(response.body)
-      expect(response.status).to eq(200)
       expect(json.length).to eq(10)
     end
   end
@@ -18,12 +23,17 @@ RSpec.describe "Api::V1::Pictures", type: :request do
   end
 
   describe "GET /show" do
-    it "display the specific picture" do
+    it "successfully display the specific picture" do
+      picture = create(:picture)
+      get "/api/v1/pictures/#{picture.id}"
+      expect(response).to have_http_status(:success)
+    end
+
+    it "display the specific picture image" do
       picture = create(:picture)
       get "/api/v1/pictures/#{picture.id}"
       json = JSON.parse(response.body)
-      expect(response).to have_http_status(:success)
-      expect(json['image']).to eq(picture.image)
+      expect(json["image"]).to eq(picture.image)
     end
   end
 end
