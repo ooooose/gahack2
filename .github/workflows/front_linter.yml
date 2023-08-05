@@ -32,10 +32,13 @@ jobs:
             ${{ runner.os }}-${{ env.project-name }}-
 
       - name: Package Install
+        working-directory: ./front
         run: yarn install
 
       - name: Lint
+        working-directory: ./front
         run: yarn lint
 
       - name: Format
+        working-directory: ./front
         run: yarn format
