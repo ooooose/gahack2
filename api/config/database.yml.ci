@@ -1,7 +1,7 @@
 test:
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
-  username: postgres
-  password: postgres
+  username: mysql
+  password: mysql
   host: 127.0.0.1
-  database: myapp_test
+  database: gahack_test
