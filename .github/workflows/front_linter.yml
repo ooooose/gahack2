@@ -38,7 +38,3 @@ jobs:
       - name: Lint
         working-directory: ./front
         run: yarn lint
-
-      - name: Format
-        working-directory: ./front
-        run: yarn format
