@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { Image, Heading, Box } from '@chakra-ui/react';
+import { Heading, Box } from '@chakra-ui/react';
 
 const Logo = () => {
   return (
