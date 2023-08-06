@@ -2,8 +2,6 @@ import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { AiOutlineMenu } from 'react-icons/ai';
 
-// サイドメニューの開閉（openSidebar, setOpenSidebarをグローバルで管理）
-// memo化もする！
 const Menu = () => {
   return (
     <>
