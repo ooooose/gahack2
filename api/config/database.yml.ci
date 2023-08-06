@@ -1,7 +1,7 @@
 test:
   adapter: mysql2
   encoding: unicode
-  username: mysql
-  password: mysql
+  username: mysql_user
+  password: password
   host: 127.0.0.1
   database: gahack_test
