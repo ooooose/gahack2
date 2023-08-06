@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import PicturesPage from '../components/pages/PicturesPage';
 import TopPage from '../components/pages/TopPage';

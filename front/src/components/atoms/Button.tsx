@@ -10,16 +10,18 @@ export type ButtonProps = {
   sizes?: string | { base: string; md: string } | { base: string; xl: string };
 };
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  ButtonProps & ChakraButtonProps
->(({ children, sizes, ...props }, ref) => {
-  const adjustment = typeof sizes === 'object' ? sizes : [sizes];
-  const buttonSize = useBreakpointValue(adjustment, 'md');
+const Button = forwardRef<HTMLButtonElement, ButtonProps & ChakraButtonProps>(
+  ({ children, sizes, ...props }, ref) => {
+    const adjustment = typeof sizes === 'object' ? sizes : [sizes];
+    const buttonSize = useBreakpointValue(adjustment, 'md');
 
-  return (
-    <ChakraButton size={buttonSize} ref={ref} {...props}>
-      {children}
-    </ChakraButton>
-  );
-});
+    return (
+      <ChakraButton size={buttonSize} ref={ref} {...props}>
+        {children}
+      </ChakraButton>
+    );
+  },
+);
+
+Button.displayName = 'Button';
+export default Button;

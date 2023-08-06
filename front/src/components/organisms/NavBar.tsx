@@ -18,6 +18,7 @@ const NavBar = ({ onOpen, ...rest }: MobileProps) => {
   return (
     <Box
       mt={2}
+      mx={6}
       px={6}
       height="20"
       width="100%"

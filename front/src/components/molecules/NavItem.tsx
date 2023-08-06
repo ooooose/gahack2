@@ -7,9 +7,10 @@ interface NavItemProps extends FlexProps {
   icon: IconType;
   children: string;
   href: string;
+  onClose: () => void;
 }
 
-const NavItem = ({ icon, children, href, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, children, href, onClose, ...rest }: NavItemProps) => {
   return (
     <>
       <Box
@@ -17,6 +18,7 @@ const NavItem = ({ icon, children, href, ...rest }: NavItemProps) => {
         href={href}
         style={{ textDecoration: 'none' }}
         _focus={{ boxShadow: 'none' }}
+        onClick={onClose}
       >
         <Flex
           align="center"

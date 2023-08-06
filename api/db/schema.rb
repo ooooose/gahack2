@@ -12,20 +12,17 @@
 
 ActiveRecord::Schema.define(version: 2023_07_29_213003) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "picture_id", null: false
     t.bigint "user_id", null: false
-    t.text "body", null: false
+    t.text "body", size: :tiny, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["picture_id"], name: "index_comments_on_picture_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "likes", force: :cascade do |t|
+  create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "picture_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -35,7 +32,7 @@ ActiveRecord::Schema.define(version: 2023_07_29_213003) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
-  create_table "pictures", force: :cascade do |t|
+  create_table "pictures", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "theme_id", null: false
     t.integer "frame_id", default: 0, null: false
@@ -46,17 +43,17 @@ ActiveRecord::Schema.define(version: 2023_07_29_213003) do
     t.index ["user_id"], name: "index_pictures_on_user_id"
   end
 
-  create_table "themes", force: :cascade do |t|
+  create_table "themes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["title"], name: "index_themes_on_title", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "uid", null: false
     t.string "name", limit: 40, null: false
-    t.text "description"
+    t.text "description", size: :tiny
     t.string "avatar"
     t.string "twitter_name"
     t.datetime "created_at", precision: 6, null: false

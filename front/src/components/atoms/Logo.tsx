@@ -1,17 +1,17 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { Image, Heading, Box } from '@chakra-ui/react';
+import { Heading, Box } from '@chakra-ui/react';
 
-const Logo = () => {
+type LinkProps = React.ComponentProps<typeof Heading>;
+
+const Logo = ({ ...props }: LinkProps) => {
   return (
     <>
       <Box p={2} float="left">
         {/* <Image src="" /> */}
         <Link className="App-link" to="/">
-          <Heading as="h2" size="2xl">
-            画HACK
-          </Heading>
+          <Heading {...props}>画HACK</Heading>
         </Link>
       </Box>
     </>
