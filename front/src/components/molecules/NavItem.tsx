@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Box, Flex, Icon, FlexProps } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
@@ -10,7 +10,7 @@ interface NavItemProps extends FlexProps {
   onClose: () => void;
 }
 
-const NavItem = ({ icon, children, href, onClose, ...rest }: NavItemProps) => {
+const NavItem = memo(({ icon, children, href, onClose, ...rest }: NavItemProps) => {
   return (
     <>
       <Box
@@ -48,6 +48,7 @@ const NavItem = ({ icon, children, href, onClose, ...rest }: NavItemProps) => {
       </Box>
     </>
   );
-};
+});
 
+NavItem.displayName = 'NavItem';
 export default NavItem;
