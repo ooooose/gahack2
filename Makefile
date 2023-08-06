@@ -37,7 +37,7 @@ g-serializer:
 d-serializer:
 	docker-compose run --rm api bin/rails d serializer $(NAME)
 
-db-migrate:
+migrate:
 	docker-compose run --rm api bin/rails db:migrate
 
 fresh:
