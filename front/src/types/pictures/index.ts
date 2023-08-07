@@ -5,7 +5,7 @@ export type Picture = {
   image: string;
   frameId: number;
   createdAt: string;
-  comments: Comment[]
+  comments?: Comment[]
 };
 
 export type PictureListsProps = {
