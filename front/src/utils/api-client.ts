@@ -5,13 +5,14 @@ class ApiClient {
 
   constructor() {
     this.axios = axiosBase.create({
-      baseURL: process.env.DEV_BASE_URL,
+      // baseURL: process.env.DEV_BASE_URL,
+      baseURL: 'http://localhost:3000',
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
         'Access-Control-Allow-Credentials': true,
       },
-      withCredentials: true,
+      // withCredentials: true,
       responseType: 'json',
     });
   }
