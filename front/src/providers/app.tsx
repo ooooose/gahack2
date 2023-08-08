@@ -8,7 +8,6 @@ type AppProviderProps = {
   children: ReactNode;
 };
 
-
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <>

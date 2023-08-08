@@ -1,4 +1,4 @@
-import { Picture } from "../pictures";
+import { Picture } from '../pictures';
 
 export type Theme = {
   id: number;

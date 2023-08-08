@@ -1,7 +1,3 @@
-import { useCallback } from "react"
-
-export const useGetInfinite = <Data = any>(
-  url: string, 
-) => {
+export const useGetInfinite = () => {
   // TODO 無限スクロールを実装
-}
+};

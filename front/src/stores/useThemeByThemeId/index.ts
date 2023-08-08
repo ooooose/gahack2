@@ -1,1 +1,1 @@
-export { useThemeByThemeId } from "./useThemeByThemeId";
+export { useThemeByThemeId } from './useThemeByThemeId';
