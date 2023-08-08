@@ -8,18 +8,20 @@ RSpec.describe "Api::V1::Pictures", type: :request do
       expect(response.status).to eq(200)
     end
 
-    it "display pictures correctly for first page" do
-      create_list(:picture, 10)
-      get "/api/v1/pictures?page=1"
-      json = JSON.parse(response.body)
-      expect(json.length).to eq(6)
-    end
+    context "when show pictures in each page" do
+      it "display correctly for first page" do
+        create_list(:picture, 10)
+        get "/api/v1/pictures?page=1"
+        json = JSON.parse(response.body)
+        expect(json.length).to eq(6)
+      end
 
-    it "display pictures correctly for first page" do
-      create_list(:picture, 10)
-      get "/api/v1/pictures?page=2"
-      json = JSON.parse(response.body)
-      expect(json.length).to eq(4)
+      it "display correctly for second page" do
+        create_list(:picture, 10)
+        get "/api/v1/pictures?page=2"
+        json = JSON.parse(response.body)
+        expect(json.length).to eq(4)
+      end
     end
   end
 
