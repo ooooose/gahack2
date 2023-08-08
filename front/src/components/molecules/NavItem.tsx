@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import { Box, Flex, Icon, FlexProps } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
@@ -10,44 +10,47 @@ interface NavItemProps extends FlexProps {
   onClose: () => void;
 }
 
-const NavItem = ({ icon, children, href, onClose, ...rest }: NavItemProps) => {
-  return (
-    <>
-      <Box
-        as="a"
-        href={href}
-        style={{ textDecoration: 'none' }}
-        _focus={{ boxShadow: 'none' }}
-        onClick={onClose}
-      >
-        <Flex
-          align="center"
-          p="4"
-          mx="4"
-          borderRadius="lg"
-          role="group"
-          cursor="pointer"
-          _hover={{
-            bg: 'cyan.400',
-            color: 'white',
-          }}
-          {...rest}
+const NavItem = memo(
+  ({ icon, children, href, onClose, ...rest }: NavItemProps) => {
+    return (
+      <>
+        <Box
+          as="a"
+          href={href}
+          style={{ textDecoration: 'none' }}
+          _focus={{ boxShadow: 'none' }}
+          onClick={onClose}
         >
-          {icon && (
-            <Icon
-              mr="4"
-              fontSize="16"
-              _groupHover={{
-                color: 'white',
-              }}
-              as={icon}
-            />
-          )}
-          {children}
-        </Flex>
-      </Box>
-    </>
-  );
-};
+          <Flex
+            align="center"
+            p="4"
+            mx="4"
+            borderRadius="lg"
+            role="group"
+            cursor="pointer"
+            _hover={{
+              bg: 'cyan.400',
+              color: 'white',
+            }}
+            {...rest}
+          >
+            {icon && (
+              <Icon
+                mr="4"
+                fontSize="16"
+                _groupHover={{
+                  color: 'white',
+                }}
+                as={icon}
+              />
+            )}
+            {children}
+          </Flex>
+        </Box>
+      </>
+    );
+  },
+);
 
+NavItem.displayName = 'NavItem';
 export default NavItem;

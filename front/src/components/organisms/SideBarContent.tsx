@@ -47,7 +47,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           画HACK
         </Text>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        <CloseButton display={'flex'} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
         <NavItem

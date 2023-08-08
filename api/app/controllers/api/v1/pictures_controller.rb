@@ -2,7 +2,7 @@ class Api::V1::PicturesController < BaseController
   before_action :set_picture, only: %i[show destroy]
 
   def index
-    pictures = Picture.includes(:user, :theme).all
+    pictures = Picture.includes(:user, :theme, :likes, :comments).all.page(params[:page]).per(6)
 
     render json: pictures, each_serializer: Api::V1::PictureSerializer
   end
