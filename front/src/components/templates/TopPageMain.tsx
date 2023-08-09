@@ -1,5 +1,5 @@
-import React from "react";
-import Picture from "../molecules/Picture";
+import React from 'react';
+import Picture from '../molecules/Picture';
 import sampleImage from '../../assets/sample.png';
 
 const TopPageMain = () => {
@@ -8,7 +8,7 @@ const TopPageMain = () => {
       <Picture src={sampleImage} />
       {/* ここに説明文のコンポーネントも追加予定 */}
     </>
-  )
-}
+  );
+};
 
 export default TopPageMain;
