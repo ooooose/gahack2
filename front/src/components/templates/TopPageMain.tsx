@@ -1,6 +1,5 @@
 import React from 'react';
 import Picture from '../molecules/Picture';
-import sampleImage from '../../assets/sample.png';
 
 const TopPageMain = () => {
   return (

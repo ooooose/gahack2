@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import sampleImage from '../../assets/sample.png';
 
@@ -76,7 +76,6 @@ const Picture = styled.img`
   vertical-align: top;
   z-index: 10;
 `;
-
 
 const FirstPictureFrame = () => {
   return (

@@ -11,7 +11,7 @@ function PicturesPage() {
       {/* 幅によって並ぶ個数を変えたい */}
       <Box display={'flex'}>
         {pictures.map((picture) => (
-          <Box key={picture.id} >
+          <Box key={picture.id}>
             <Picture />
             <h1>{picture.image}</h1>
           </Box>
