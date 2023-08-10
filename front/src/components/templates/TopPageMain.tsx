@@ -5,7 +5,7 @@ import sampleImage from '../../assets/sample.png';
 const TopPageMain = () => {
   return (
     <>
-      <Picture src={sampleImage} />
+      <Picture />
       {/* ここに説明文のコンポーネントも追加予定 */}
     </>
   );

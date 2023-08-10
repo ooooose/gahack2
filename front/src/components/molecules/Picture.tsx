@@ -1,16 +1,14 @@
 import React from 'react';
-import { Image } from '@chakra-ui/react';
-import PictureImage from '../atoms/PictureImage';
+import { Box } from '@chakra-ui/react';
 import FirstPictureFrame from '../atoms/FirstPictureFrame';
 
-type PictureProps = React.ComponentProps<typeof Image>;
-
-const Picture = ({ ...props }: PictureProps) => {
+// frameIdに基づいてフレームを変える！Boxのカスタマイズもやる予定。
+const Picture = () => {
   return (
     <>
-      <FirstPictureFrame>
-        <PictureImage {...props} />
-      </FirstPictureFrame>
+      <Box position='relative' w={'400px'} fontSize={'12px'}>
+        <FirstPictureFrame />
+      </Box>
     </>
   );
 };

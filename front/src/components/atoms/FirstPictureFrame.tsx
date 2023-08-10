@@ -1,9 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled from '@emotion/styled';
-
-type Props = {
-  children: ReactNode;
-};
+import sampleImage from '../../assets/sample.png';
 
 const OuterFrame = styled.div`
   background-color: #eefbf8;
@@ -24,7 +21,7 @@ const OuterFrame = styled.div`
   min-height: 100%;
 `;
 
-const Frame = styled.ul`
+const Frame = styled.div`
   background-color: #fff;
   box-shadow:
     inset 0 0 2px hsla(0, 0%, 0%, 0.2),
@@ -72,18 +69,21 @@ const Frame = styled.ul`
   }
 `;
 
-const InnerFrame = styled.li`
-  box-shadow: 0 -1px 0 2px hsla(0, 0%, 0%, 0.03);
-  list-style: none;
-  position: absolute;
+const Picture = styled.img`
+  height: 17.75em;
+  transition: 0.25s;
+  width: 26em;
+  vertical-align: top;
+  z-index: 10;
 `;
 
-const FirstPictureFrame = ({ children }: Props) => {
+
+const FirstPictureFrame = () => {
   return (
     <>
       <OuterFrame>
         <Frame>
-          <InnerFrame>{children}</InnerFrame>
+          <Picture src={sampleImage} />
         </Frame>
       </OuterFrame>
     </>
