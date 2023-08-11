@@ -6,11 +6,14 @@ import {
   Flex,
   Box,
   Heading,
+  useDisclosure
 } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Button from '../atoms/Button';
+import LoginModal from '../organisms/LoginModal';
 
 const TopPageMain = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Stack
@@ -55,14 +58,13 @@ const TopPageMain = () => {
           >
             <Button
               rounded={'full'}
-              as={Link}
-              to={'/pictures'}
               size={'lg'}
               fontWeight={'normal'}
               px={6}
               colorScheme={'red'}
               bg={'red.400'}
               _hover={{ bg: 'red.500' }}
+              onClick={onOpen}
             >
               ログイン
             </Button>
@@ -87,6 +89,7 @@ const TopPageMain = () => {
           </Box>
         </Flex>
       </Stack>
+      <LoginModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

@@ -4,7 +4,7 @@ import { Button, Center, Stack, Text } from '@chakra-ui/react'
 
 const SocialLoginButton = () => {
   return (
-    <Center p={8}>
+    <Center p={2}>
       <Stack spacing={2} align={'center'} maxW={'md'} w={'full'}>
         <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />}>
           <Center>
