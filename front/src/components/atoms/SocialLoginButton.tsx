@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Button, Center, Stack, Text } from '@chakra-ui/react'
+import { Button, Center, Stack, Text } from '@chakra-ui/react';
 
 const SocialLoginButton = () => {
   return (
@@ -13,7 +13,7 @@ const SocialLoginButton = () => {
         </Button>
       </Stack>
     </Center>
-  )
-}
+  );
+};
 
 export default SocialLoginButton;

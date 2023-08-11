@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -8,16 +8,16 @@ import {
   ModalBody,
   ModalCloseButton,
 } from '@chakra-ui/react';
-import Button from "../atoms/Button";
-import SocialLoginButton from "../atoms/SocialLoginButton";
-import Text from "../atoms/Text";
+import Button from '../atoms/Button';
+import SocialLoginButton from '../atoms/SocialLoginButton';
+import Text from '../atoms/Text';
 
 type LoginModalProps = {
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
-const LoginModal = ({ isOpen, onClose }: LoginModalProps) =>  {
+const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
   return (
     <>
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -26,18 +26,20 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) =>  {
           <ModalHeader>ログインメニュー</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text fontWeight='bold' mb='1rem'>
+            <Text fontWeight="bold" mb="1rem">
               ログインをして始めましょう！
             </Text>
             <SocialLoginButton />
           </ModalBody>
           <ModalFooter>
-            <Button variant='ghost' onClick={onClose}>キャンセル</Button>
+            <Button variant="ghost" onClick={onClose}>
+              キャンセル
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default LoginModal;

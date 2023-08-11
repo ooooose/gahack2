@@ -1,13 +1,6 @@
 import React from 'react';
 import FirstPictureFrame from '../atoms/FirstPictureFrame';
-import { Link } from 'react-router-dom';
-import {
-  Stack,
-  Flex,
-  Box,
-  Heading,
-  useDisclosure
-} from '@chakra-ui/react';
+import { Stack, Flex, Box, Heading, useDisclosure } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import LoginModal from '../organisms/LoginModal';
@@ -81,10 +74,7 @@ const TopPageMain = () => {
           w={'full'}
           h={'full'}
         >
-          <Box
-            width={'full'}
-            overflow={'hidden'}
-          >
+          <Box width={'full'} overflow={'hidden'}>
             <FirstPictureFrame />
           </Box>
         </Flex>
