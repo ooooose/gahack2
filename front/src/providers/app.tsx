@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import { RecoilRoot } from 'recoil';
 import { Center, ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Footer from '../components/templates/Footer';
@@ -11,13 +12,15 @@ type AppProviderProps = {
 const AppProvider = ({ children }: AppProviderProps) => {
   return (
     <>
-      <ChakraProvider>
-        <Router>
-          <Sidebar />
-          <Center h={'500px'}>{children}</Center>
-          <Footer />
-        </Router>
-      </ChakraProvider>
+      <RecoilRoot>
+        <ChakraProvider>
+          <Router>
+            <Sidebar />
+            <Center h={'500px'}>{children}</Center>
+            <Footer />
+          </Router>
+        </ChakraProvider>
+      </RecoilRoot>
     </>
   );
 };
