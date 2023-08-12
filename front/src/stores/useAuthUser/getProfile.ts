@@ -5,10 +5,12 @@ import { User } from '../../types/users';
 type ConfigType = {
   headers: {
     authorization: string;
-  }
-}
+  };
+};
 
-export const getProfile = (config: ConfigType): SWRResponse<User[] | undefined> => {
+export const getProfile = (
+  config: ConfigType,
+): SWRResponse<User[] | undefined> => {
   return useSWR(
     `${process.env.REACT_APP_HOST}/profile`,
     (endpoint) =>
