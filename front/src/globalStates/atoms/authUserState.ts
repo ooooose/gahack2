@@ -1,16 +1,23 @@
 import React, { useCallback } from 'react';
 
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
-import { User } from '../../types/users';
+import { AuthUser } from '../../types/users';
 
-type UserType = User | null;
+type UserType = AuthUser | null;
 type AuthUserType = {
   authUserType: UserType;
 };
 
 const authUserRecoilState = atom<AuthUserType>({
   key: 'authUserState',
-  default: { authUserType: null },
+  default: { authUserType: {
+    authChecked: false,
+    avatar: '',
+    description: '',
+    name: '',
+    twitterName: '',
+    uid: '',
+  } },
 });
 
 export const useAuthUserState = () => {

@@ -9,7 +9,6 @@ import {
 import { getProfile } from '../../stores/useAuthUser/getProfile';
 import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
 
-
 export const useFirebaseAuth = () => {
   const currentUser = useAuthUserMutators();
   
@@ -82,6 +81,7 @@ export const useFirebaseAuth = () => {
         const { data: user } = getProfile(config);
         if (user) {
           currentUser.setAuthUser({
+            authChecked: true,
             name: user.name || '',
             avatar: user.avatar || '',
             description: user.description,

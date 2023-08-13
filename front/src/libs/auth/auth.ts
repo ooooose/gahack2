@@ -1,16 +1,15 @@
 import {
   getAdditionalUserInfo,
-  getAuth,
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
 import { NavigateFunction } from 'react-router-dom';
+import { auth } from '../firebase/initFirebase';
 
 export const loginWithGoogle = async (
   navigate: NavigateFunction,
   fromPathName: string
 ) => {
-  const auth = getAuth();
   const provider = new GoogleAuthProvider();
 
   try {
@@ -26,6 +25,7 @@ export const loginWithGoogle = async (
       });
       return;
     }
+    console.log();
     navigate(fromPathName);
   } catch (error: any) {
     if (error.code === 'auth/account-exists-with-different-credential') {
