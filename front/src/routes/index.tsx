@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
+import { useFirebaseAuth } from '../libs/auth/firebaseAuth';
 import PicturesPage from '../components/pages/PicturesPage';
 import TopPage from '../components/pages/TopPage';
 import AboutPage from '../components/pages/AboutPage';
 import PrivacyPolicy from '../components/pages/PrivacyPolicy';
 import TermsOfService from '../components/pages/TermsOfService';
+import {  useAuthUserMutators } from '../globalStates/atoms/authUserState';
 
 const AppRoutes = () => {
   const { hash, pathname } = useLocation();
+  const setCurrentUser = useAuthUserMutators();
+  const { currentUser } = useFirebaseAuth(setCurrentUser);
 
   useEffect(() => {
     if (!hash) {

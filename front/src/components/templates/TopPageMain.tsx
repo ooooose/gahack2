@@ -4,8 +4,10 @@ import { Stack, Flex, Box, Heading, useDisclosure } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import LoginModal from '../organisms/LoginModal';
+import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 const TopPageMain = () => {
+  const currentUser = useAuthUserState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -45,41 +47,48 @@ const TopPageMain = () => {
             <br />
             さぁ、絵を描いていこうぜ！！
           </Text>
-          <Stack
-            spacing={{ base: 4, sm: 6 }}
-            direction={{ base: 'column', sm: 'row' }}
-          >
-            <Button
-              rounded={'full'}
-              size={'lg'}
-              fontWeight={'normal'}
-              px={6}
-              colorScheme={'red'}
-              bg={'red.400'}
-              _hover={{ bg: 'red.500' }}
-              onClick={onOpen}
-            >
-              ログイン
-            </Button>
-            <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6}>
-              ゲストログイン
-            </Button>
+          { currentUser ? 
+            <>
+            </>
+            :
+            <>
+              <Stack
+                spacing={{ base: 4, sm: 6 }}
+                direction={{ base: 'column', sm: 'row' }}
+              >
+                <Button
+                  rounded={'full'}
+                  size={'lg'}
+                  fontWeight={'normal'}
+                  px={6}
+                  colorScheme={'red'}
+                  bg={'red.400'}
+                  _hover={{ bg: 'red.500' }}
+                  onClick={onOpen}
+                >
+                  ログイン
+                </Button>
+                <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6}>
+                  ゲストログイン
+                </Button>
+              </Stack>
+            </>
+          }
           </Stack>
+          <Flex
+            flex={1}
+            justify={'center'}
+            align={'center'}
+            position={'relative'}
+            w={'full'}
+            h={'full'}
+          >
+            <Box width={'full'} overflow={'hidden'}>
+              <FirstPictureFrame />
+            </Box>
+          </Flex>
         </Stack>
-        <Flex
-          flex={1}
-          justify={'center'}
-          align={'center'}
-          position={'relative'}
-          w={'full'}
-          h={'full'}
-        >
-          <Box width={'full'} overflow={'hidden'}>
-            <FirstPictureFrame />
-          </Box>
-        </Flex>
-      </Stack>
-      <LoginModal isOpen={isOpen} onClose={onClose} />
+        <LoginModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

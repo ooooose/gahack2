@@ -12,6 +12,7 @@ type SocialLoginButtonProps = {
 const SocialLoginButton = ({ onClose }: SocialLoginButtonProps) => {
   const navigate = useNavigate();
   const setCurrentUser = useAuthUserMutators();
+
   return (
     <Center p={2}>
       <Stack spacing={2} align={'center'} maxW={'md'} w={'full'}>

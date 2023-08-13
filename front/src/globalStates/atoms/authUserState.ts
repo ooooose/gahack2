@@ -9,16 +9,7 @@ type AuthUserType = {
 
 const authUserRecoilState = atom<AuthUserType>({
   key: 'authUserState',
-  default: {
-    authUserType: {
-      authChecked: false,
-      avatar: '',
-      description: '',
-      name: '',
-      twitterName: '',
-      uid: '',
-    },
-  },
+  default: { authUserType: null },
 });
 
 export const useAuthUserState = () => {

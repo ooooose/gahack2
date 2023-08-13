@@ -15,7 +15,6 @@ export const loginWithGoogle = async (
   const result = await signInWithPopup(auth, provider);
   if (result) {
     setCurrentUser.setAuthUser({
-      authChecked: true,
       name: result.user.displayName || '',
       avatar: result.user.photoURL || '',
       description: '',

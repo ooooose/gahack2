@@ -7,7 +7,6 @@ export type User = {
 };
 
 export type AuthUser = {
-  authChecked: boolean;
   avatar: string;
   description: string;
   name: string;

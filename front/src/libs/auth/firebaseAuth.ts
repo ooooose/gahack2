@@ -1,55 +1,36 @@
-import axios from 'axios';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { useGetProfile } from '../../stores/useUsers/useGetProfile';
-import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
 import { auth } from '../firebase/initFirebase';
+import { AuthUser } from '../../types/users';
+import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
-export const useFirebaseAuth = () => {
-  const currentUser = useAuthUserMutators();
-  const nextOrObserver = async (authUser: User | null) => {
-    if (authUser) {
-      const token = await authUser.getIdToken();
+type authUserMutator = {
+  setAuthUser: (authUserType: AuthUser | null) => void;
+};
 
-      const config = {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      };
-      try {
-        const res = await axios.post(
-          `${process.env.REACT_APP_HOST}/authentication`,
-          null,
-          config,
-        );
-
-        if (res.status !== 200) {
-          throw new Error('login error');
-        }
-        const { data: user } = useGetProfile(config);
-        if (user) {
-          currentUser.setAuthUser({
-            authChecked: true,
-            name: user.name || '',
-            avatar: user.avatar || '',
-            description: user.description,
-            uid: authUser.uid,
-            twitterName: user.twitterName,
-          });
-        }
-      } catch (error: unknown) {
-        console.error(`ユーザー情報の取得に失敗しました\n${error}`);
-      }
-    } else {
-      currentUser.setAuthUser(null);
+export const useFirebaseAuth = (
+  setCurrentUser: authUserMutator) => {
+  const currentUser = useAuthUserState();
+  const nextOrObserver = async (user: User | null) => {
+    if (!user) {
+      return;
     }
+
+    setCurrentUser.setAuthUser({
+      name: user.displayName || '',
+      avatar: user.photoURL || '',
+      description: '',
+      uid: user.uid,
+      twitterName: '',
+    });
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, nextOrObserver);
     return unsubscribe;
   }, []);
-
+  console.log(currentUser);
   return {
     currentUser,
   };
