@@ -2,19 +2,15 @@ import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
 import { User } from '../../types/users';
 
-type ConfigType = {
-  headers: {
-    authorization: string;
-  };
-};
-
-export const getProfile = (
-  config: ConfigType,
-): SWRResponse<User> => {
+export const useGetUser = ({
+  userId,
+}: {
+  userId: string;
+}): SWRResponse<User | undefined> => {
   return useSWR(
-    `${process.env.REACT_APP_HOST}/profile`,
+    userId ? `${process.env.REACT_APP_HOST}/users/${userId}` : null,
     (endpoint) =>
-      apiClient.apiPost<User>(endpoint, config).then((result) => result.data),
+      apiClient.apiPost<User>(endpoint).then((result) => result.data),
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,

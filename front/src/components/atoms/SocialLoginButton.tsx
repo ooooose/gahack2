@@ -2,7 +2,8 @@ import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { Button, Center, Stack, Text } from '@chakra-ui/react';
 import { loginWithGoogle } from '../../libs/auth/auth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
 
 type SocialLoginButtonProps = {
   onClose: () => void;
@@ -10,8 +11,7 @@ type SocialLoginButtonProps = {
 
 const SocialLoginButton = ({onClose}: SocialLoginButtonProps) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const fromPathName = location.pathname + location.search;
+  const setCurrentUser = useAuthUserMutators();
   return (
     <Center p={2}>
       <Stack spacing={2} align={'center'} maxW={'md'} w={'full'}>
@@ -20,8 +20,8 @@ const SocialLoginButton = ({onClose}: SocialLoginButtonProps) => {
           variant={'outline'} 
           leftIcon={<FcGoogle />} 
           onClick={() => {
+            loginWithGoogle(navigate, setCurrentUser);
             onClose();
-            loginWithGoogle(navigate, fromPathName);
           }}>
           <Center>
             <Text>Sign in with Google</Text>

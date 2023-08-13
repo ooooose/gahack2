@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { AuthUser } from '../../types/users';
 
