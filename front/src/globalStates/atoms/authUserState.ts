@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { AuthUser } from '../../types/users';
 
@@ -9,14 +9,16 @@ type AuthUserType = {
 
 const authUserRecoilState = atom<AuthUserType>({
   key: 'authUserState',
-  default: { authUserType: {
-    authChecked: false,
-    avatar: '',
-    description: '',
-    name: '',
-    twitterName: '',
-    uid: '',
-  } },
+  default: {
+    authUserType: {
+      authChecked: false,
+      avatar: '',
+      description: '',
+      name: '',
+      twitterName: '',
+      uid: '',
+    },
+  },
 });
 
 export const useAuthUserState = () => {

@@ -29,7 +29,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
             <Text fontWeight="bold" mb="1rem">
               ログインをして始めましょう！
             </Text>
-            <SocialLoginButton onClose={onClose}/>
+            <SocialLoginButton onClose={onClose} />
           </ModalBody>
           <ModalFooter>
             <Button variant="ghost" onClick={onClose}>

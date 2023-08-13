@@ -9,20 +9,21 @@ type SocialLoginButtonProps = {
   onClose: () => void;
 };
 
-const SocialLoginButton = ({onClose}: SocialLoginButtonProps) => {
+const SocialLoginButton = ({ onClose }: SocialLoginButtonProps) => {
   const navigate = useNavigate();
   const setCurrentUser = useAuthUserMutators();
   return (
     <Center p={2}>
       <Stack spacing={2} align={'center'} maxW={'md'} w={'full'}>
-        <Button 
-          w={'full'} 
-          variant={'outline'} 
-          leftIcon={<FcGoogle />} 
+        <Button
+          w={'full'}
+          variant={'outline'}
+          leftIcon={<FcGoogle />}
           onClick={() => {
             loginWithGoogle(navigate, setCurrentUser);
             onClose();
-          }}>
+          }}
+        >
           <Center>
             <Text>Sign in with Google</Text>
           </Center>

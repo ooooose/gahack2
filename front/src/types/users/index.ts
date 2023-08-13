@@ -13,4 +13,4 @@ export type AuthUser = {
   name: string;
   twitterName: string;
   uid: string;
-}
+};

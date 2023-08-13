@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { useEffect } from 'react';
-import {
-  User,
-  onAuthStateChanged,
-} from "firebase/auth";
+import { User, onAuthStateChanged } from 'firebase/auth';
 import { useGetProfile } from '../../stores/useUsers/useGetProfile';
 import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
 import { auth } from '../firebase/initFirebase';
@@ -11,9 +8,9 @@ import { auth } from '../firebase/initFirebase';
 export const useFirebaseAuth = () => {
   const currentUser = useAuthUserMutators();
   const nextOrObserver = async (authUser: User | null) => {
-    if (authUser) {   
+    if (authUser) {
       const token = await authUser.getIdToken();
-  
+
       const config = {
         headers: {
           authorization: `Bearer ${token}`,
@@ -25,7 +22,7 @@ export const useFirebaseAuth = () => {
           null,
           config,
         );
-  
+
         if (res.status !== 200) {
           throw new Error('login error');
         }
@@ -38,10 +35,10 @@ export const useFirebaseAuth = () => {
             description: user.description,
             uid: authUser.uid,
             twitterName: user.twitterName,
-          })
+          });
         }
-      } catch (error: any) {
-        console.error(`ユーザー情報の取得に失敗しました\n${error.messages}`);
+      } catch (error: unknown) {
+        console.error(`ユーザー情報の取得に失敗しました\n${error}`);
       }
     } else {
       currentUser.setAuthUser(null);
