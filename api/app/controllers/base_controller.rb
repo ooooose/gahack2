@@ -1,7 +1,8 @@
 class BaseController < ApplicationController
-  include Api::ExceptionHandler
   include FirebaseAuth
+  include Api::ExceptionHandler
   include ActionController::HttpAuthentication::Token::ControllerMethods
+
   before_action :authenticate
 
   def authenticate
@@ -11,10 +12,12 @@ class BaseController < ApplicationController
       if result[:errors]
         render_error400(nil, result[:errors])
       else
-        @current_user = User.find_or_create_user(result)
+        @_current_user = User.find_or_create_by!(result)
       end
     end
   end
 
-  attr_reader :current_user
+  def current_user
+    @_current_user
+  end
 end
