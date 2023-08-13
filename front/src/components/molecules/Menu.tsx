@@ -38,7 +38,7 @@ const Menu = ({ currentUser, logout }: currentUserProps) => {
             bg={useColorModeValue('white', 'gray.900')}
             borderColor={useColorModeValue('gray.200', 'gray.700')}>
             <MenuItem onClick={() => {
-              logout;
+              logout();
               console.log('logout!');
               navigate('/');
             }}>ログアウト</MenuItem>

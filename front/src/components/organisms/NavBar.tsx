@@ -41,9 +41,16 @@ const NavBar = ({ onOpen, ...rest }: MobileProps) => {
         />
         <Logo />
       </Box>
-      <Box position={'fixed'} zIndex={10} right={6}>
-        <Menu currentUser={currentUser.authUserType} logout={logout} />
-      </Box>
+      { currentUser.authUserType !== null ? (
+        <>
+          <Box position={'fixed'} zIndex={10} right={6}>
+            <Menu currentUser={currentUser.authUserType} logout={logout} />
+          </Box>
+        </>
+      ) : (
+        <>
+        </>
+      ) }
     </Box>
   );
 };

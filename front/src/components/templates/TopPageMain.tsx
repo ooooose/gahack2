@@ -47,7 +47,7 @@ const TopPageMain = () => {
             <br />
             さぁ、絵を描いていこうぜ！！
           </Text>
-          {currentUser ? (
+          {currentUser.authUserType !== null ? (
             <></>
           ) : (
             <>

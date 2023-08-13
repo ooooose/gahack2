@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { signOut, User, onAuthStateChanged } from 'firebase/auth';
+import { signOut as _signOut, User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/initFirebase';
 import { AuthUser } from '../../types/users';
 import { useAuthUserState } from '../../globalStates/atoms/authUserState';
@@ -24,10 +24,16 @@ export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
     });
   };
 
-  const clear = () => {
-    setCurrentUser.setAuthUser(null);
-  };
-  const logout = () => signOut(auth).then(clear);
+  const logout = async () => {
+    return await _signOut(auth)
+    .then(() => {
+      setCurrentUser.setAuthUser(null);
+      console.log('signed out!');
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, nextOrObserver);
