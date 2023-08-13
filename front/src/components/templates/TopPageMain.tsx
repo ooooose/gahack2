@@ -47,10 +47,9 @@ const TopPageMain = () => {
             <br />
             さぁ、絵を描いていこうぜ！！
           </Text>
-          { currentUser ? 
-            <>
-            </>
-            :
+          {currentUser ? (
+            <></>
+          ) : (
             <>
               <Stack
                 spacing={{ base: 4, sm: 6 }}
@@ -68,27 +67,32 @@ const TopPageMain = () => {
                 >
                   ログイン
                 </Button>
-                <Button rounded={'full'} size={'lg'} fontWeight={'normal'} px={6}>
+                <Button
+                  rounded={'full'}
+                  size={'lg'}
+                  fontWeight={'normal'}
+                  px={6}
+                >
                   ゲストログイン
                 </Button>
               </Stack>
             </>
-          }
-          </Stack>
-          <Flex
-            flex={1}
-            justify={'center'}
-            align={'center'}
-            position={'relative'}
-            w={'full'}
-            h={'full'}
-          >
-            <Box width={'full'} overflow={'hidden'}>
-              <FirstPictureFrame />
-            </Box>
-          </Flex>
+          )}
         </Stack>
-        <LoginModal isOpen={isOpen} onClose={onClose} />
+        <Flex
+          flex={1}
+          justify={'center'}
+          align={'center'}
+          position={'relative'}
+          w={'full'}
+          h={'full'}
+        >
+          <Box width={'full'} overflow={'hidden'}>
+            <FirstPictureFrame />
+          </Box>
+        </Flex>
+      </Stack>
+      <LoginModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

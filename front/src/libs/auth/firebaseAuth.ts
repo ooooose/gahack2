@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useEffect } from 'react';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/initFirebase';
@@ -9,8 +8,7 @@ type authUserMutator = {
   setAuthUser: (authUserType: AuthUser | null) => void;
 };
 
-export const useFirebaseAuth = (
-  setCurrentUser: authUserMutator) => {
+export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
   const currentUser = useAuthUserState();
   const nextOrObserver = async (user: User | null) => {
     if (!user) {
