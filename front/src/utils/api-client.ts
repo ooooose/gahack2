@@ -2,11 +2,9 @@ import axiosBase, { AxiosInstance, AxiosResponse } from 'axios';
 
 class ApiClient {
   axios: AxiosInstance;
-
   constructor() {
     this.axios = axiosBase.create({
-      // baseURL: process.env.DEV_BASE_URL,
-      baseURL: 'http://localhost:3000',
+      baseURL: process.env.REACT_APP_HOST,
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
@@ -18,19 +16,19 @@ class ApiClient {
   }
 
   async apiGet<T>(url: string, query = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.get<T>(`/api/v1${url}`, { ...query });
+    return await this.axios.get<T>(`${url}`, { ...query });
   }
 
   async apiPost<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.post<T>(`/api/v1${url}`, body);
+    return await this.axios.post<T>(`${url}`, body);
   }
 
   async apiPut<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.put<T>(`/api/v1${url}`, body);
+    return await this.axios.put<T>(`${url}`, body);
   }
 
   async apiDelete<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.delete<T>(`/api/v1${url}`, { data: body });
+    return await this.axios.delete<T>(`${url}`, { data: body });
   }
 }
 
