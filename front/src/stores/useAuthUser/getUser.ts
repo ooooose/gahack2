@@ -6,11 +6,11 @@ export const getUser = ({
   userId,
 }: {
   userId: string;
-}): SWRResponse<User[] | undefined> => {
+}): SWRResponse<User | undefined> => {
   return useSWR(
     userId ? `${process.env.REACT_APP_HOST}/users/${userId}` : null,
     (endpoint) =>
-      apiClient.apiPost<User[]>(endpoint).then((result) => result.data),
+      apiClient.apiPost<User>(endpoint).then((result) => result.data),
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,

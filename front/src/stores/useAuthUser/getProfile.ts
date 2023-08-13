@@ -10,11 +10,11 @@ type ConfigType = {
 
 export const getProfile = (
   config: ConfigType,
-): SWRResponse<User[] | undefined> => {
+): SWRResponse<User> => {
   return useSWR(
     `${process.env.REACT_APP_HOST}/profile`,
     (endpoint) =>
-      apiClient.apiPost<User[]>(endpoint, config).then((result) => result.data),
+      apiClient.apiPost<User>(endpoint, config).then((result) => result.data),
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,
