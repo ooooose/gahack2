@@ -6,7 +6,7 @@ import FirstPictureFrame from '../atoms/FirstPictureFrame';
 const Picture = () => {
   return (
     <>
-      <Box position="relative" w={'400px'} fontSize={'12px'}>
+      <Box position="relative" w={'400px'} fontSize={'10px'}>
         <FirstPictureFrame />
       </Box>
     </>
