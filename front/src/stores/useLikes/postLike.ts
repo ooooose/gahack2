@@ -1,16 +1,22 @@
 import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
-import { Picture } from '../../types/pictures';
+import { getAuth } from 'firebase/auth';
 
-export const postLike = (): SWRResponse<Picture[] | undefined> => {
+type postLikeType = {
+  pictureId: number,
+}
+
+export const postLike = ({ pictureId }: postLikeType) => {
+  const auth = getAuth();
+  const idToken = auth.currentUser?.getIdToken();
+  const config = {
+    headers: {
+      authorization: `Bearer ${idToken}`,
+    },
+  };
   return useSWR(
     '/likes',
     (endpoint) =>
-      apiClient.apiGet<Picture[]>(endpoint).then((result) => result.data),
-    {
-      revalidateIfStale: false,
-      revalidateOnFocus: false,
-      revalidateOnReconnect: false,
-    },
+      apiClient.apiPost(endpoint, { picture_id: pictureId }, config).then((result) => result.data),
   );
 };

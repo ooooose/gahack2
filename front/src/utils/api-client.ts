@@ -19,8 +19,8 @@ class ApiClient {
     return await this.axios.get<T>(`${url}`, { ...query });
   }
 
-  async apiPost<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.post<T>(`${url}`, body);
+  async apiPost<T>(url: string, body = {}, config = {}): Promise<AxiosResponse<T>> {
+    return await this.axios.post<T>(`${url}`, body, config);
   }
 
   async apiPut<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
