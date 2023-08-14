@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       resources :pictures, only: %i[index create show destroy] do
         resources :comments, only: %i[index create destroy update]
       end
-      resources :likes, only: %i[create destroy]
+      resources :likes, only: %i[index create destroy]
     end
   end
 end
