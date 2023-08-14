@@ -1,8 +1,9 @@
 import React from 'react';
 import { usePictures } from '../../stores/usePictures';
-import { Box, Center } from '@chakra-ui/react';
+import { Box, Center, Flex } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
+import Like from '../molecules/Like';
 
 function PicturesPage() {
   const { data: pictures } = usePictures();
@@ -16,7 +17,10 @@ function PicturesPage() {
             <Box h={'50px'} >
               <Picture />
             </Box>
-            <Text position={'absolute'} zIndex={5} bottom={1}>{picture.image}</Text>
+            <Flex position={'absolute'} zIndex={5} bottom={3} gap={3}>
+              <Text>{picture.image}</Text>
+              <Like picture={picture} />
+            </Flex>
           </Center>
         ))}
       </Box>

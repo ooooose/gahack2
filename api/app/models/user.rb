@@ -31,4 +31,5 @@ class User < ApplicationRecord
   def unlike(picture)
     like_pictures.destroy(picture)
   end
+
 end

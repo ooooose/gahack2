@@ -27,8 +27,8 @@ class ApiClient {
     return await this.axios.put<T>(`${url}`, body);
   }
 
-  async apiDelete<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
-    return await this.axios.delete<T>(`${url}`, { data: body });
+  async apiDelete<T>(url: string, config = {}): Promise<AxiosResponse<T>> {
+    return await this.axios.delete<T>(`${url}`, config);
   }
 }
 

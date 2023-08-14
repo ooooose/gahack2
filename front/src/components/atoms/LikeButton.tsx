@@ -1,31 +1,49 @@
-import type { HTMLChakraProps } from '@chakra-ui/react'
-import { Box, chakra, Icon, Text, Tooltip } from '@chakra-ui/react'
-import type { HTMLMotionProps } from 'framer-motion'
-import { motion, useAnimation } from 'framer-motion'
-import { useState } from 'react'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import React, { useState } from 'react';
+import { Box, chakra, Icon, Text, textDecoration, Tooltip } from '@chakra-ui/react';
+import { motion, useAnimation } from 'framer-motion';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { Picture } from '../../types/pictures';
+import { deleteLike } from '../../stores/useLikes/deleteLike';
+import { postLike } from '../../stores/useLikes/postLike';
 
-export type LikeButtonProps = {
-  pictureId?: number
+type LikeButtonProps = {
+  picture: Picture;
+  generateParams: () => {
+    pictureId: number;
+  }
 }
 
-const LikeButton = ({ pictureId }: LikeButtonProps) => {
-  const [isLike, setIsLike] = useState(false)
-  const controls = useAnimation()
+const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
+  const [isLike, setIsLike] = useState<boolean>(false);
+  const [likes, setLikes] = picture.likes ? useState<number>(picture.likes.length) : useState<number>(0) ;
+  const controls = useAnimation();
 
-  const toggleLike = () => {
-    setIsLike(!isLike)
-    controls.start({ scale: [1, 1.3, 1.6, 1.3, 1] })
-  }
-
-  const MotionBox = motion(chakra.div)
+  const MotionBox = motion(chakra.div);
+  const handleLike = () => {
+    const params = generateParams();
+    if (isLike) {
+      const { data: res } = deleteLike(params);
+      if (res) {
+        setIsLike(false);
+        setLikes((prev) => --prev);
+      }
+    } else {
+      const { data: res } = postLike(params);
+      if (res) {
+        setIsLike(true);
+        setLikes((prev) => ++prev);
+      }
+    }
+  };
 
   return (
     <Box display="flex" alignItems="center" color="gray.500">
       <Tooltip label="いいね" bg="gray.400" fontSize="11px">
         <MotionBox
           cursor="pointer"
-          onClick={toggleLike}
+          onClick={() => {
+            handleLike();
+          }}
           animate={controls}
           transition={{ duration: 0.2 }}
         >
@@ -37,6 +55,7 @@ const LikeButton = ({ pictureId }: LikeButtonProps) => {
           />
         </MotionBox>
       </Tooltip>
+      <Text pointerEvents={'none'}>{likes}</Text>
     </Box>
   )
 }
