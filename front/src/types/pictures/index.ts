@@ -1,4 +1,5 @@
 import { Comment } from '../comments';
+import { Like } from '../likes';
 
 export type Picture = {
   id: number;
@@ -8,12 +9,6 @@ export type Picture = {
   comments?: Comment[];
   likes?: Like[];
 };
-
-export type Like = {
-  id: number;
-  pictureId: number;
-  userId: number;
-}
 
 export type PictureListsProps = {
   themeItems: Picture[];

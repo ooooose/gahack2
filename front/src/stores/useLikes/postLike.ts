@@ -1,22 +1,14 @@
-import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
-import { getAuth } from 'firebase/auth';
+import useSWRMutation from 'swr/mutation'
 
 type postLikeType = {
   pictureId: number,
 }
 
 export const postLike = ({ pictureId }: postLikeType) => {
-  const auth = getAuth();
-  const idToken = auth.currentUser?.getIdToken();
-  const config = {
-    headers: {
-      authorization: `Bearer ${idToken}`,
-    },
-  };
-  return useSWR(
+  return useSWRMutation(
     '/likes',
     (endpoint) =>
-      apiClient.apiPost(endpoint, { picture_id: pictureId }, config).then((result) => result.data),
+      apiClient.apiPost(endpoint, { picture_id: pictureId }),
   );
 };

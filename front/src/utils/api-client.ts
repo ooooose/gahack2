@@ -1,4 +1,5 @@
 import axiosBase, { AxiosInstance, AxiosResponse } from 'axios';
+import { getAuth } from 'firebase/auth';
 
 class ApiClient {
   axios: AxiosInstance;
@@ -19,15 +20,36 @@ class ApiClient {
     return await this.axios.get<T>(`${url}`, { ...query });
   }
 
-  async apiPost<T>(url: string, body = {}, config = {}): Promise<AxiosResponse<T>> {
+  async apiPost<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
+    const auth = getAuth();
+    const idToken = await auth.currentUser?.getIdToken();
+    const config = {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    };
     return await this.axios.post<T>(`${url}`, body, config);
   }
 
   async apiPut<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
+    const auth = getAuth();
+    const idToken = await auth.currentUser?.getIdToken();
+    const config = {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    };
     return await this.axios.put<T>(`${url}`, body);
   }
 
-  async apiDelete<T>(url: string, config = {}): Promise<AxiosResponse<T>> {
+  async apiDelete<T>(url: string): Promise<AxiosResponse<T>> {
+    const auth = getAuth();
+    const idToken = await auth.currentUser?.getIdToken();
+    const config = {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    };
     return await this.axios.delete<T>(`${url}`, config);
   }
 }

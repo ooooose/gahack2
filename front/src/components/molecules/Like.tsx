@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useAuthUserState } from "../../globalStates/atoms/authUserState";
 import Text from "../atoms/Text";
 import { Picture } from "../../types/pictures";

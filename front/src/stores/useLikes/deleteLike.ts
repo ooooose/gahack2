@@ -1,22 +1,14 @@
-import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation'
 import { apiClient } from '../../utils/api-client';
-import { getAuth } from 'firebase/auth';
 
 type postLikeType = {
-  pictureId: number,
+  pictureId: number;
 }
 
 export const deleteLike = ({ pictureId }: postLikeType) => {
-  const auth = getAuth();
-  const idToken = auth.currentUser?.getIdToken();
-  const config = {
-    headers: {
-      authorization: `Bearer ${idToken}`,
-    },
-  };
-  return useSWR(
+  return useSWRMutation(
     `/likes/${pictureId}`,
     (endpoint) =>
-      apiClient.apiDelete(endpoint, config).then((result) => result.data),
+      apiClient.apiDelete(endpoint),
   );
 };

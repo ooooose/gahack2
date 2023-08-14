@@ -17,22 +17,20 @@ const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
   const [isLike, setIsLike] = useState<boolean>(false);
   const [likes, setLikes] = picture.likes ? useState<number>(picture.likes.length) : useState<number>(0) ;
   const controls = useAnimation();
+  const params = generateParams();
+  const { trigger: like } = postLike(params);
+  const { trigger: unlike } = deleteLike(params);
 
   const MotionBox = motion(chakra.div);
   const handleLike = () => {
-    const params = generateParams();
     if (isLike) {
-      const { data: res } = deleteLike(params);
-      if (res) {
-        setIsLike(false);
-        setLikes((prev) => --prev);
-      }
+      unlike();
+      setIsLike(false);
+      setLikes((prev) => --prev);
     } else {
-      const { data: res } = postLike(params);
-      if (res) {
-        setIsLike(true);
-        setLikes((prev) => ++prev);
-      }
+      like();
+      setIsLike(true);
+      setLikes((prev) => ++prev);
     }
   };
 
