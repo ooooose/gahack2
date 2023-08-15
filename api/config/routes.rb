@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resources :themes, only: %i[index show]
       resources :pictures, only: %i[index create show destroy] do
         resources :comments, only: %i[index create destroy update]
+        collection do
+          get 'likes', to: 'pictures#likes'
+        end
       end
       resources :likes, only: %i[index create destroy]
     end

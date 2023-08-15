@@ -3,8 +3,7 @@ class Api::V1::PicturesController < BaseController
 
   def index
     pictures = Picture.includes(:user, :theme, :comments).all.page(params[:page]).per(6)
-
-    render json: pictures, each_serializer: Api::V1::PictureSerializer
+    render json: pictures, status: :ok
   end
 
   def show
@@ -24,6 +23,11 @@ class Api::V1::PicturesController < BaseController
   def destroy
     @picture.destroy!
     render json: @picture
+  end
+
+  def likes
+    pictures = current_user.like_pictures
+    render json: pictures, each_serializer: Api::V1::PictureSerializer
   end
 
   private
