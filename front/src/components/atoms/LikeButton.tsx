@@ -8,28 +8,29 @@ import { postLike } from '../../stores/useLikes/postLike';
 
 type LikeButtonProps = {
   picture: Picture;
+  isLikedPicture?: Picture;
   generateParams: () => {
     pictureId: number;
   }
 }
 
-const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
-  const [isLike, setIsLike] = useState<boolean>(false);
+const LikeButton = ({ picture, isLikedPicture, generateParams }: LikeButtonProps) => {
+  const likeId = isLikedPicture?.likes ? isLikedPicture.likes[0].id : null;
+  const [isLike, setIsLike] = useState<boolean>(!!isLikedPicture);
   const [likes, setLikes] = picture.likes ? useState<number>(picture.likes.length) : useState<number>(0) ;
   const controls = useAnimation();
   const params = generateParams();
   const { trigger: like } = postLike(params);
-  const { trigger: unlike } = deleteLike(params);
+  const { trigger: unlike } = deleteLike({ id: `${likeId}` });
 
   const MotionBox = motion(chakra.div);
   const handleLike = () => {
     if (isLike) {
+      console.log('unlike!')
       unlike();
-      setIsLike(false);
       setLikes((prev) => --prev);
     } else {
       like();
-      setIsLike(true);
       setLikes((prev) => ++prev);
     }
   };

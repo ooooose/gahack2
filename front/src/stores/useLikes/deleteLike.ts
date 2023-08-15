@@ -1,13 +1,13 @@
 import useSWRMutation from 'swr/mutation'
 import { apiClient } from '../../utils/api-client';
 
-type postLikeType = {
-  pictureId: number;
+type likeType = {
+  id?: string;
 }
 
-export const deleteLike = ({ pictureId }: postLikeType) => {
+export const deleteLike = ({ id }: likeType) => {
   return useSWRMutation(
-    `/likes/${pictureId}`,
+    `/likes/${id}`,
     (endpoint) =>
       apiClient.apiDelete(endpoint),
   );

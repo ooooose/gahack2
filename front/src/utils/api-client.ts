@@ -20,6 +20,17 @@ class ApiClient {
     return await this.axios.get<T>(`${url}`, { ...query });
   }
 
+  async apiGetWithAuth<T>(url: string): Promise<AxiosResponse<T>> {
+    const auth = getAuth();
+    const idToken = await auth.currentUser?.getIdToken();
+    const config = {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    };
+    return await this.axios.get<T>(`${url}`, config);
+  }
+
   async apiPost<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
     const auth = getAuth();
     const idToken = await auth.currentUser?.getIdToken();

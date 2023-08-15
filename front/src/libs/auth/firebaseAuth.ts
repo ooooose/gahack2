@@ -39,7 +39,7 @@ export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
     const unsubscribe = onAuthStateChanged(auth, nextOrObserver);
     return unsubscribe;
   }, []);
-  console.log(currentUser);
+
   return {
     currentUser,
     logout,
