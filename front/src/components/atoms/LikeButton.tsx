@@ -15,9 +15,8 @@ type LikeButtonProps = {
 }
 
 const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
-  const { data, error, mutate } = getLikes();
+  const { data, error, mutate } = getLikes({ pictureId: picture.id });
 
-  if (error) return <div>Error loading data</div>;
   if (!data) return <div>Loading...</div>;
 
   const handleLike = () => {
@@ -47,14 +46,14 @@ const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
           transition={{ duration: 0.2 }}
         >
           <Icon
-            as={data.liked ? AiFillHeart : AiOutlineHeart}
+            as={data?.liked ? AiFillHeart : AiOutlineHeart}
             mr="2.5"
             fontSize="22px"
-            color={data.liked ? 'red.400' : ''}
+            color={data?.liked ? 'red.400' : ''}
           />
         </MotionBox>
       </Tooltip>
-      <Text pointerEvents={'none'}>{data.likes}</Text>
+      <Text pointerEvents={'none'}>{data?.likes}</Text>
     </Box>
   )
 }

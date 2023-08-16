@@ -8,6 +8,7 @@ import Like from '../molecules/Like';
 function PicturesPage() {
   const { data: pictures } = usePictures();
   if (!pictures) return <div>Loading...</div>;
+  console.log([pictures])
   return (
     <>
       {/* 幅によって並ぶ個数を変えたい */}
