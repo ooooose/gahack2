@@ -27,9 +27,10 @@ class Api::V1::PicturesController < BaseController
 
   def likes
     @picture = Picture.includes(:user, :theme).find(params[:picture_id])
+    like_id = @picture.likes.find_by(user_id: current_user.id).id
     liked = current_user.like?(@picture)
     likes = @picture.likes.length
-    render json: { status: :ok, liked: liked, likes: likes }
+    render json: { status: :ok, like_id: like_id, liked: liked, likes: likes }
   end
 
   private
