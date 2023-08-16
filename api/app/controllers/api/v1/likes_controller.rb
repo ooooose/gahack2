@@ -3,8 +3,10 @@ class Api::V1::LikesController < BaseController
   skip_before_action :authenticate, only: %w[index]
 
   def index
-    like = @picture.likes.find_by(user_id: current_user.id)
-    render json: {status: :ok, like: like}
+    @picture = Picture.find(params[:picture_id])
+    liked = current_user.like?(@picture)
+    likes = @picture.likes.length
+    render json: { status: :ok, liked: liked, likes: likes }
   end
 
   def create
