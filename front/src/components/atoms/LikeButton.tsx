@@ -3,8 +3,8 @@ import { Box, chakra, Icon, Text, textDecoration, Tooltip } from '@chakra-ui/rea
 import { motion, useAnimation } from 'framer-motion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Picture } from '../../types/pictures';
-import { deleteLike } from '../../stores/useLikes/deleteLike';
-import { postLike } from '../../stores/useLikes/postLike';
+import { getLikes } from '../../stores/useLikes/getLikes';
+import { apiClient } from '../../utils/api-client';
 
 type LikeButtonProps = {
   picture: Picture;
@@ -14,26 +14,26 @@ type LikeButtonProps = {
   }
 }
 
-const LikeButton = ({ picture, isLikedPicture, generateParams }: LikeButtonProps) => {
-  const likeId = isLikedPicture?.likes ? isLikedPicture.likes[0].id : null;
-  const [isLike, setIsLike] = useState<boolean>(!!isLikedPicture);
-  const [likes, setLikes] = picture.likes ? useState<number>(picture.likes.length) : useState<number>(0) ;
+const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
+  const { data, error, mutate } = getLikes();
+
+  if (error) return <div>Error loading data</div>;
+  if (!data) return <div>Loading...</div>;
+
+  const handleLike = () => {
+    // いいねのトグル処理を実装
+    const updatedData = { ...data, liked: !data.liked };
+    if (data.liked) {
+      // deleteLike
+    } else {
+      apiClient.apiPost('/likes', { picture_id: picture.id })
+    }
+    // サーバーに更新を反映
+    mutate(updatedData);
+  }
   const controls = useAnimation();
-  const params = generateParams();
-  const { trigger: like } = postLike(params);
-  const { trigger: unlike } = deleteLike({ id: `${likeId}` });
 
   const MotionBox = motion(chakra.div);
-  const handleLike = () => {
-    if (isLike) {
-      console.log('unlike!')
-      unlike();
-      setLikes((prev) => --prev);
-    } else {
-      like();
-      setLikes((prev) => ++prev);
-    }
-  };
 
   return (
     <Box display="flex" alignItems="center" color="gray.500">
@@ -47,14 +47,14 @@ const LikeButton = ({ picture, isLikedPicture, generateParams }: LikeButtonProps
           transition={{ duration: 0.2 }}
         >
           <Icon
-            as={isLike ? AiFillHeart : AiOutlineHeart}
+            as={data.liked ? AiFillHeart : AiOutlineHeart}
             mr="2.5"
             fontSize="22px"
-            color={isLike ? 'red.400' : ''}
+            color={data.liked ? 'red.400' : ''}
           />
         </MotionBox>
       </Tooltip>
-      <Text pointerEvents={'none'}>{likes}</Text>
+      <Text pointerEvents={'none'}>{data.likes}</Text>
     </Box>
   )
 }

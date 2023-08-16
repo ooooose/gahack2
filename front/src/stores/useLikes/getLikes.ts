@@ -1,14 +1,15 @@
 import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
-import { Picture } from '../../types/pictures';
 
-export const getLikes = (): SWRResponse<Picture[] | undefined> => {
+type LikeType = {
+  liked: boolean;
+  likes: number;
+}
+
+export const getLikes = (): SWRResponse<LikeType> => {
   return useSWR(
     '/pictures/likes',
     (endpoint) =>
-      apiClient.apiGetWithAuth<Picture[]>(endpoint).then((result) => result.data),
-    {
-      keepPreviousData: true
-    }
+      apiClient.apiGetWithAuth<LikeType>(endpoint).then((result) => result.data),
   );
 };
