@@ -15,6 +15,7 @@ class Picture < ApplicationRecord
   belongs_to :user
   belongs_to :theme
   has_many :likes, inverse_of: :picture, dependent: :destroy
+  has_many :like_users, through: :likes, source: :user
   has_many :comments, inverse_of: :picture, dependent: :destroy
 
   validates :image, presence: true

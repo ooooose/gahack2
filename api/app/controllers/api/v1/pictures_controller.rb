@@ -11,7 +11,7 @@ class Api::V1::PicturesController < BaseController
   end
 
   def create
-    picture = @current_user.build(picture_params)
+    picture = current_user.build(picture_params)
 
     if picture.save
       render json: picture
@@ -26,8 +26,10 @@ class Api::V1::PicturesController < BaseController
   end
 
   def likes
-    pictures = current_user.like_pictures
-    render json: pictures, each_serializer: Api::V1::PictureSerializer
+    @picture = Picture.includes(:user, :theme).find(params[:picture_id])
+    liked = current_user.like?(@picture)
+    likes = @picture.likes.length
+    render json: { status: :ok, liked: liked, likes: likes }
   end
 
   private
