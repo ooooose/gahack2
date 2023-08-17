@@ -5,5 +5,4 @@ class Api::V1::PictureSerializer < ActiveModel::Serializer
   has_many :likes
   belongs_to :theme
   belongs_to :user
-
 end

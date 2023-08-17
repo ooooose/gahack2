@@ -1,6 +1,5 @@
 class Api::V1::LikesController < BaseController
   before_action :set_picture, only: %i[create destroy]
-  skip_before_action :authenticate, only: %w[index]
 
   def create
     current_user.like(@picture)

@@ -35,5 +35,4 @@ class User < ApplicationRecord
   def like?(picture)
     picture.like_users.include?(self)
   end
-
 end
