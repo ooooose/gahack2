@@ -3,17 +3,22 @@ import { Box, chakra, Icon, Text, textDecoration, Tooltip } from '@chakra-ui/rea
 import { motion, useAnimation } from 'framer-motion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Picture } from '../../types/pictures';
-import { getLikes } from '../../stores/useLikes/getLikes';
+import { useToggleLike } from '../../stores/useLikes/useToggleLike';
 
 type LikeButtonProps = {
-  trigger: () => Promise<any>;
-  isMutating: boolean;
+  picture: Picture;
+  likeId: number;
   isLiked: boolean;
   likes: number;
 }
 
-const LikeButton = ({ trigger, isMutating, isLiked, likes }: LikeButtonProps) => {
-
+const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
+  const toggleProps = {
+    isLiked: isLiked,
+    likeId: likeId,
+    pictureId: picture.id,
+  }
+  const { trigger, isMutating } = useToggleLike(toggleProps);
   const controls = useAnimation();
 
   const MotionBox = motion(chakra.div);
@@ -23,7 +28,7 @@ const LikeButton = ({ trigger, isMutating, isLiked, likes }: LikeButtonProps) =>
       <Tooltip label="いいね" bg="gray.400" fontSize="11px">
         <MotionBox
           cursor="pointer"
-          onClick={trigger}
+          onClick={() => {trigger()}}
           animate={controls}
           transition={{ duration: 0.2 }}
           _disabled={isMutating}

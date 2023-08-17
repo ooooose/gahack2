@@ -10,7 +10,7 @@ type props = {
   pictureId: number;
 }
 
-export const getLikes = ({ pictureId }: props): SWRResponse<LikeType> => {
+export const useGetLikes = ({ pictureId }: props): SWRResponse<LikeType> => {
   return useSWR(
     `/pictures/${pictureId}/likes`,
     (endpoint) =>
