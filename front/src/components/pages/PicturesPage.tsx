@@ -4,11 +4,12 @@ import { Box, Center, Flex } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
 import Like from '../molecules/Like';
+import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 function PicturesPage() {
+  const currentUser = useAuthUserState();
   const { data: pictures } = usePictures();
   if (!pictures) return <div>Loading...</div>;
-  console.log([pictures])
   return (
     <>
       {/* 幅によって並ぶ個数を変えたい */}
@@ -20,7 +21,7 @@ function PicturesPage() {
             </Box>
             <Flex position={'absolute'} zIndex={5} bottom={3} gap={3}>
               <Text>{picture.image}</Text>
-              <Like picture={picture} />
+              <Like picture={picture} currentUser={currentUser.authUserType} />
             </Flex>
           </Center>
         ))}

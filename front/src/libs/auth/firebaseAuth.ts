@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { signOut as _signOut, User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/initFirebase';
 import { AuthUser } from '../../types/users';
@@ -10,8 +10,10 @@ type authUserMutator = {
 
 export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
   const currentUser = useAuthUserState();
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const nextOrObserver = async (user: User | null) => {
     if (!user) {
+      setIsLoading(false);
       return;
     }
 
@@ -22,6 +24,7 @@ export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
       uid: user.uid,
       twitterName: '',
     });
+    setIsLoading(false);
   };
 
   const logout = async () => {
@@ -43,5 +46,6 @@ export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
   return {
     currentUser,
     logout,
+    isLoading,
   };
 };

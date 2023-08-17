@@ -6,15 +6,20 @@ import { Box } from "@chakra-ui/react";
 import { useToggleLike } from "../../stores/useLikes/useToggleLike";
 import { useGetLikes } from "../../stores/useLikes/useGetLikes";
 import LikeButton from "../atoms/LikeButton";
+import { AuthUser } from "../../types/users";
 
-const Like = ({ picture }: { picture: Picture }) => {
-  const currentUser = useAuthUserState();
+type Props = {
+  picture: Picture;
+  currentUser: AuthUser | null;
+}
+
+const Like = ({ picture, currentUser }: Props) => {
   const { data } = useGetLikes({ pictureId: picture.id });
   if (!data) return <div>Loading...</div>;
   
   return (
     <>
-      { currentUser.authUserType !== null ? (
+      { currentUser !== null ? (
           <Box>
             <LikeButton picture={picture} isLiked={data?.liked} likes={data?.likes} likeId={data?.likeId} />
           </Box>

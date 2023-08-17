@@ -9,16 +9,16 @@ import {
 import { FiMenu } from 'react-icons/fi';
 import Logo from '../atoms/Logo';
 import Menu from '../molecules/Menu';
-import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
-import { useFirebaseAuth } from '../../libs/auth/firebaseAuth';
+import { AuthUser } from '../../types/users';
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
+  logout: () => Promise<void>;
+  currentUser: AuthUser | null;
 }
 
-const NavBar = ({ onOpen, ...rest }: MobileProps) => {
-  const setCurrentUser = useAuthUserMutators();
-  const { currentUser, logout } = useFirebaseAuth(setCurrentUser);
+const NavBar = ({ onOpen, logout, currentUser, ...rest }: MobileProps) => {
+  
   return (
     <Box
       mt={2}
@@ -41,10 +41,10 @@ const NavBar = ({ onOpen, ...rest }: MobileProps) => {
         />
         <Logo />
       </Box>
-      { currentUser.authUserType !== null ? (
+      { currentUser !== null ? (
         <>
           <Box position={'fixed'} zIndex={10} right={6}>
-            <Menu currentUser={currentUser.authUserType} logout={logout} />
+            <Menu currentUser={currentUser} logout={logout} />
           </Box>
         </>
       ) : (
