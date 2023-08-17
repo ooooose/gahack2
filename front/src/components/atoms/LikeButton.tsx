@@ -4,32 +4,16 @@ import { motion, useAnimation } from 'framer-motion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Picture } from '../../types/pictures';
 import { getLikes } from '../../stores/useLikes/getLikes';
-import { apiClient } from '../../utils/api-client';
 
 type LikeButtonProps = {
-  picture: Picture;
-  isLikedPicture?: Picture;
-  generateParams: () => {
-    pictureId: number;
-  }
+  trigger: () => Promise<any>;
+  isMutating: boolean;
+  isLiked: boolean;
+  likes: number;
 }
 
-const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
-  const { data, error, mutate } = getLikes({ pictureId: picture.id });
+const LikeButton = ({ trigger, isMutating, isLiked, likes }: LikeButtonProps) => {
 
-  if (!data) return <div>Loading...</div>;
-
-  const handleLike = () => {
-    // いいねのトグル処理を実装
-    const updatedData = { ...data, liked: !data.liked };
-    if (data.liked) {
-      // deleteLike
-    } else {
-      apiClient.apiPost('/likes', { picture_id: picture.id })
-    }
-    // サーバーに更新を反映
-    mutate(updatedData);
-  }
   const controls = useAnimation();
 
   const MotionBox = motion(chakra.div);
@@ -39,21 +23,20 @@ const LikeButton = ({ picture, generateParams }: LikeButtonProps) => {
       <Tooltip label="いいね" bg="gray.400" fontSize="11px">
         <MotionBox
           cursor="pointer"
-          onClick={() => {
-            handleLike();
-          }}
+          onClick={trigger}
           animate={controls}
           transition={{ duration: 0.2 }}
+          _disabled={isMutating}
         >
           <Icon
-            as={data?.liked ? AiFillHeart : AiOutlineHeart}
+            as={isLiked ? AiFillHeart : AiOutlineHeart}
             mr="2.5"
             fontSize="22px"
-            color={data?.liked ? 'red.400' : ''}
+            color={isLiked ? 'red.400' : ''}
           />
         </MotionBox>
       </Tooltip>
-      <Text pointerEvents={'none'}>{data?.likes}</Text>
+      <Text pointerEvents={'none'}>{likes}</Text>
     </Box>
   )
 }

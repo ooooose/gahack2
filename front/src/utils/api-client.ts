@@ -50,7 +50,7 @@ class ApiClient {
         authorization: `Bearer ${idToken}`,
       },
     };
-    return await this.axios.put<T>(`${url}`, body);
+    return await this.axios.put<T>(`${url}`, body, config);
   }
 
   async apiDelete<T>(url: string): Promise<AxiosResponse<T>> {
@@ -62,6 +62,21 @@ class ApiClient {
       },
     };
     return await this.axios.delete<T>(`${url}`, config);
+  }
+
+  async apiPostOrDelete<T>(url: string, isLiked: boolean, likeId: number, pictureId: number): Promise<AxiosResponse<T>> {
+    const auth = getAuth();
+    const idToken = await auth.currentUser?.getIdToken();
+    const config = {
+      headers: {
+        authorization: `Bearer ${idToken}`,
+      },
+    };
+    return await this.axios.request<T>({
+      method: isLiked ? 'DELETE' : 'POST',
+      url: url,
+			headers: config.headers,
+    });
   }
 }
 
