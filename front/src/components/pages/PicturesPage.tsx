@@ -15,8 +15,16 @@ function PicturesPage() {
       {/* 幅によって並ぶ個数を変えたい */}
       <Box display={'flex'}>
         {pictures.map((picture) => (
-          <Center key={picture.id} display={'flex'} flexDirection={'column'} m={3} h={'350px'} bg='gray.50' position={'relative'}>
-            <Box h={'50px'} >
+          <Center
+            key={picture.id}
+            display={'flex'}
+            flexDirection={'column'}
+            m={3}
+            h={'350px'}
+            bg="gray.50"
+            position={'relative'}
+          >
+            <Box h={'50px'}>
               <Picture />
             </Box>
             <Flex position={'absolute'} zIndex={5} bottom={3} gap={3}>

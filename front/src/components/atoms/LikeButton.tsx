@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, chakra, Icon, Text, textDecoration, Tooltip } from '@chakra-ui/react';
+import React from 'react';
+import { Box, chakra, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Picture } from '../../types/pictures';
@@ -10,14 +10,14 @@ type LikeButtonProps = {
   likeId: number;
   isLiked: boolean;
   likes: number;
-}
+};
 
 const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
   const toggleProps = {
     isLiked: isLiked,
     likeId: likeId,
     pictureId: picture.id,
-  }
+  };
   const { trigger, isMutating } = useToggleLike(toggleProps);
   const controls = useAnimation();
 
@@ -28,7 +28,9 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
       <Tooltip label="いいね" bg="gray.400" fontSize="11px">
         <MotionBox
           cursor="pointer"
-          onClick={() => {trigger()}}
+          onClick={() => {
+            trigger();
+          }}
           animate={controls}
           transition={{ duration: 0.2 }}
           _disabled={isMutating}
@@ -43,8 +45,7 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
       </Tooltip>
       <Text pointerEvents={'none'}>{likes}</Text>
     </Box>
-  )
-}
+  );
+};
 
 export default LikeButton;
-

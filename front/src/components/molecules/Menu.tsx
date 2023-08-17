@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Flex,
@@ -8,13 +8,13 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-} from '@chakra-ui/react'
-import { FiChevronDown } from 'react-icons/fi'
-import Avatar from "../atoms/Avatar";
-import { AuthUser } from "../../types/users";
-import { useNavigate } from "react-router-dom";
+} from '@chakra-ui/react';
+import { FiChevronDown } from 'react-icons/fi';
+import Avatar from '../atoms/Avatar';
+import { AuthUser } from '../../types/users';
+import { useNavigate } from 'react-router-dom';
 
-type currentUserProps = { 
+type currentUserProps = {
   currentUser: AuthUser | null;
   logout: () => Promise<void>;
 };
@@ -25,7 +25,11 @@ const Menu = ({ currentUser, logout }: currentUserProps) => {
     <>
       <Flex alignItems={'center'}>
         <ChakraMenu>
-          <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
+          <MenuButton
+            py={2}
+            transition="all 0.3s"
+            _focus={{ boxShadow: 'none' }}
+          >
             <HStack>
               <Avatar avatar={currentUser?.avatar} />
               <Box display={{ base: 'none', md: 'flex' }}>
@@ -36,17 +40,22 @@ const Menu = ({ currentUser, logout }: currentUserProps) => {
           <MenuList
             zIndex={20}
             bg={useColorModeValue('white', 'gray.900')}
-            borderColor={useColorModeValue('gray.200', 'gray.700')}>
-            <MenuItem onClick={() => {
-              logout();
-              console.log('logout!');
-              navigate('/');
-            }}>ログアウト</MenuItem>
+            borderColor={useColorModeValue('gray.200', 'gray.700')}
+          >
+            <MenuItem
+              onClick={() => {
+                logout();
+                console.log('logout!');
+                navigate('/');
+              }}
+            >
+              ログアウト
+            </MenuItem>
           </MenuList>
         </ChakraMenu>
       </Flex>
     </>
-  )
-}
+  );
+};
 
 export default Menu;

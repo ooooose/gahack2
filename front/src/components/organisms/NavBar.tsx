@@ -18,7 +18,6 @@ interface MobileProps extends FlexProps {
 }
 
 const NavBar = ({ onOpen, logout, currentUser, ...rest }: MobileProps) => {
-  
   return (
     <Box
       mt={2}
@@ -41,16 +40,15 @@ const NavBar = ({ onOpen, logout, currentUser, ...rest }: MobileProps) => {
         />
         <Logo />
       </Box>
-      { currentUser !== null ? (
+      {currentUser !== null ? (
         <>
           <Box position={'fixed'} zIndex={10} right={6}>
             <Menu currentUser={currentUser} logout={logout} />
           </Box>
         </>
       ) : (
-        <>
-        </>
-      ) }
+        <></>
+      )}
     </Box>
   );
 };

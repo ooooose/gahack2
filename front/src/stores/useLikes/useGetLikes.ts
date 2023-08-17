@@ -5,15 +5,13 @@ type LikeType = {
   likeId: number;
   liked: boolean;
   likes: number;
-}
+};
 type props = {
   pictureId: number;
-}
+};
 
 export const useGetLikes = ({ pictureId }: props): SWRResponse<LikeType> => {
-  return useSWR(
-    `/pictures/${pictureId}/likes`,
-    (endpoint) =>
-      apiClient.apiGetWithAuth<LikeType>(endpoint).then((result) => result.data),
+  return useSWR(`/pictures/${pictureId}/likes`, (endpoint) =>
+    apiClient.apiGetWithAuth<LikeType>(endpoint).then((result) => result.data),
   );
 };

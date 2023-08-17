@@ -64,7 +64,10 @@ class ApiClient {
     return await this.axios.delete<T>(`${url}`, config);
   }
 
-  async apiPostOrDelete<T>(url: string, isLiked: boolean, likeId: number, pictureId: number): Promise<AxiosResponse<T>> {
+  async apiPostOrDelete<T>(
+    url: string,
+    isLiked: boolean,
+  ): Promise<AxiosResponse<T>> {
     const auth = getAuth();
     const idToken = await auth.currentUser?.getIdToken();
     const config = {
@@ -75,7 +78,7 @@ class ApiClient {
     return await this.axios.request<T>({
       method: isLiked ? 'DELETE' : 'POST',
       url: url,
-			headers: config.headers,
+      headers: config.headers,
     });
   }
 }

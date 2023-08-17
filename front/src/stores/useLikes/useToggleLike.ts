@@ -5,12 +5,16 @@ type props = {
   isLiked: boolean;
   pictureId: number;
   likeId: number;
-}
+};
 
-export const useToggleLike = ({ isLiked, pictureId, likeId }: props): SWRMutationResponse => {
+export const useToggleLike = ({
+  isLiked,
+  pictureId,
+  likeId,
+}: props): SWRMutationResponse => {
   return useSWRMutation(
-    isLiked ? `/likes/${likeId}` : `/likes/${pictureId}` ,
+    isLiked ? `/likes/${likeId}` : `/likes/${pictureId}`,
     (endpoint) =>
-      apiClient.apiPostOrDelete(endpoint, isLiked, pictureId, likeId).then((response) => response),
+      apiClient.apiPostOrDelete(endpoint, isLiked).then((response) => response),
   );
 };

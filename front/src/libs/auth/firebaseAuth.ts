@@ -29,14 +29,14 @@ export const useFirebaseAuth = (setCurrentUser: authUserMutator) => {
 
   const logout = async () => {
     return await _signOut(auth)
-    .then(() => {
-      setCurrentUser.setAuthUser(null);
-      console.log('signed out!');
-    })
-    .catch((e) => {
-      console.log(e);
-    });
-  }
+      .then(() => {
+        setCurrentUser.setAuthUser(null);
+        console.log('signed out!');
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, nextOrObserver);

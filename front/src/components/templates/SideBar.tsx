@@ -29,7 +29,12 @@ function Sidebar() {
         </Drawer>
       </Box>
       {/* navbar */}
-      <NavBar display={{ base: 'flex' }} onOpen={onOpen} logout={logout} currentUser={currentUser.authUserType} />
+      <NavBar
+        display={{ base: 'flex' }}
+        onOpen={onOpen}
+        logout={logout}
+        currentUser={currentUser.authUserType}
+      />
     </>
   );
 }

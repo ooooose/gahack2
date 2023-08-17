@@ -83,7 +83,7 @@ const FirstPictureFrame = () => {
     <>
       <OuterFrame>
         <Frame>
-          <Picture src={sampleImage}/>
+          <Picture src={sampleImage} />
         </Frame>
       </OuterFrame>
     </>

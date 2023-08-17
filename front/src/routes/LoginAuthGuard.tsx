@@ -1,6 +1,4 @@
-import React, { ReactElement } from "react";
-import { useAuthUserState } from "../globalStates/atoms/authUserState";
-
+import React, { ReactElement } from 'react';
 
 type LoginRouteGuardProps = {
   children: ReactElement;
@@ -8,11 +6,7 @@ type LoginRouteGuardProps = {
 
 // 認証状況によりハンドリングすること。
 const LoginAuthGuard = ({ children }: LoginRouteGuardProps) => {
-  const currentUser = useAuthUserState();
-  return (
-    <>
-    </>
-  )
-}
+  return <>{children}</>;
+};
 
 export default LoginAuthGuard;
