@@ -29,7 +29,10 @@ const AppRoutes = () => {
       ) : (
         <Routes>
           <Route path="/" element={<TopPage />} />
-          <Route path="/pictures" element={<LoginAuthGuard component={<PicturesPage />} />} />
+          <Route
+            path="/pictures"
+            element={<LoginAuthGuard component={<PicturesPage />} />}
+          />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

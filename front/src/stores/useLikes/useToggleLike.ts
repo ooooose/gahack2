@@ -17,6 +17,8 @@ export const useToggleLike = ({
   return useSWRMutation(
     isLiked ? `/likes/${likeId}` : '/likes',
     (endpoint: string) =>
-      apiClient.apiPostOrDelete(endpoint, isLiked, params).then((response) => response),
+      apiClient
+        .apiPostOrDelete(endpoint, isLiked, params)
+        .then((response) => response),
   );
 };

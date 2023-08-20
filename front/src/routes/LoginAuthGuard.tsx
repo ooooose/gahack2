@@ -10,9 +10,9 @@ type LoginAuthGuardProps = {
 const LoginAuthGuard = ({ component }: LoginAuthGuardProps) => {
   const currentUser = useAuthUserState();
   if (currentUser.authUserType?.uid) {
-    return <>{component}</>
+    return <>{component}</>;
   } else {
-    return <TopPage />
+    return <TopPage />;
   }
 };
 

@@ -18,7 +18,7 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
     likeId: likeId,
     params: {
       picture_id: picture.id,
-    }
+    },
   };
   const { trigger } = useToggleLike(toggleProps);
   const controls = useAnimation();
