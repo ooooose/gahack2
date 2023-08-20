@@ -8,13 +8,14 @@ import AboutPage from '../components/pages/AboutPage';
 import PrivacyPolicy from '../components/pages/PrivacyPolicy';
 import TermsOfService from '../components/pages/TermsOfService';
 import { useAuthUserMutators } from '../globalStates/atoms/authUserState';
+import LoginAuthGuard from './LoginAuthGuard';
 
 const AppRoutes = () => {
   const { hash, pathname } = useLocation();
   const setCurrentUser = useAuthUserMutators();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { currentUser } = useFirebaseAuth(setCurrentUser);
-
+  const { isLoading } = useFirebaseAuth(setCurrentUser);
+  console.log(isLoading);
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
@@ -22,13 +23,22 @@ const AppRoutes = () => {
   }, [hash, pathname]);
 
   return (
-    <Routes>
-      <Route path="/" element={<TopPage />} />
-      <Route path="/pictures" element={<PicturesPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/terms-of-service" element={<TermsOfService />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-    </Routes>
+    <>
+      {isLoading ? (
+        <p>...loading</p>
+      ) : (
+        <Routes>
+          <Route path="/" element={<TopPage />} />
+          <Route
+            path="/pictures"
+            element={<LoginAuthGuard component={<PicturesPage />} />}
+          />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        </Routes>
+      )}
+    </>
   );
 };
 

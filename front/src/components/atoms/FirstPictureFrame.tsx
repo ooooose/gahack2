@@ -33,7 +33,7 @@ const Frame = styled.div`
   padding: 0.5em;
   position: absolute;
   top: 50%;
-  width: 25em;
+  width: 27em;
   &:before {
     background-color: #22130c;
     bottom: -2.5em;
@@ -49,7 +49,7 @@ const Frame = styled.div`
     position: absolute;
     right: -2.5em;
     top: -2.5em;
-    z-index: -1;
+    z-index: 1;
   }
   &:after {
     background-color: #fff5e5;
@@ -65,16 +65,17 @@ const Frame = styled.div`
     position: absolute;
     right: -1.5em;
     top: -1.5em;
-    z-index: -1;
+    z-index: 1;
   }
 `;
 
 const Picture = styled.img`
-  height: 17.75em;
-  transition: 0.25s;
-  width: 26em;
-  vertical-align: top;
-  z-index: 10;
+  height: 19em;
+  width: 28em;
+  left: 0em;
+  top: 0em;
+  position: absolute;
+  z-index: 5;
 `;
 
 const FirstPictureFrame = () => {

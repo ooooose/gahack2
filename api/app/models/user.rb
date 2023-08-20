@@ -31,4 +31,8 @@ class User < ApplicationRecord
   def unlike(picture)
     like_pictures.destroy(picture)
   end
+
+  def like?(picture)
+    picture.like_users.include?(self)
+  end
 end

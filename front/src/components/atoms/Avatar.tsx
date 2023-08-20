@@ -1,13 +1,15 @@
 import React from 'react';
-import { Avatar as ChakraAvatar } from '@chakra-ui/react';
+import { Avatar as ChakraAvatar, SkeletonCircle } from '@chakra-ui/react';
 
-// UserのAvatarをpropsで受け取る。Auth認証していたら使用のAvatarを使ってもらうよう条件分岐する。
+type AvatarType = {
+  avatar: string | undefined;
+};
+
+// TODO: Avatarはページ遷移してもSkeletonにならないようにする。
 // Memo化する！
-const Avatar = () => {
+const Avatar = ({ avatar }: AvatarType) => {
   return (
-    <>
-      <ChakraAvatar src="https://bit.ly/broken-link" />
-    </>
+    <>{avatar ? <ChakraAvatar src={avatar} /> : <SkeletonCircle size="12" />}</>
   );
 };
 

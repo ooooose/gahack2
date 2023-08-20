@@ -2,9 +2,8 @@ class Api::V1::PicturesController < BaseController
   before_action :set_picture, only: %i[show destroy]
 
   def index
-    pictures = Picture.includes(:user, :theme, :likes, :comments).all.page(params[:page]).per(6)
-
-    render json: pictures, each_serializer: Api::V1::PictureSerializer
+    pictures = Picture.includes(:user, :theme, :comments).all.page(params[:page]).per(6)
+    render json: pictures, status: :ok
   end
 
   def show
@@ -12,7 +11,7 @@ class Api::V1::PicturesController < BaseController
   end
 
   def create
-    picture = @current_user.build(picture_params)
+    picture = current_user.build(picture_params)
 
     if picture.save
       render json: picture
@@ -24,6 +23,14 @@ class Api::V1::PicturesController < BaseController
   def destroy
     @picture.destroy!
     render json: @picture
+  end
+
+  def likes
+    @picture = Picture.includes(:user, :theme).find(params[:picture_id])
+    like_id = @picture.likes.find_by(user_id: current_user.id)&.id
+    liked = current_user.like?(@picture)
+    likes = @picture.likes.length
+    render json: { status: :ok, like_id:, liked:, likes: }
   end
 
   private
