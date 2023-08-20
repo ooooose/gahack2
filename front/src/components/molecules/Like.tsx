@@ -14,7 +14,6 @@ type Props = {
 const Like = ({ picture, currentUser }: Props) => {
   const { data } = useGetLikes({ pictureId: picture.id });
   if (!data) return <div>Loading...</div>;
-
   return (
     <>
       {currentUser !== null ? (
@@ -23,7 +22,7 @@ const Like = ({ picture, currentUser }: Props) => {
             picture={picture}
             isLiked={data?.liked}
             likes={data?.likes}
-            likeId={data?.likeId}
+            likeId={data?.like_id}
           />
         </Box>
       ) : (

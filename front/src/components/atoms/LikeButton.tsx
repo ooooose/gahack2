@@ -16,9 +16,11 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
   const toggleProps = {
     isLiked: isLiked,
     likeId: likeId,
-    pictureId: picture.id,
+    params: {
+      picture_id: picture.id,
+    }
   };
-  const { trigger, isMutating } = useToggleLike(toggleProps);
+  const { trigger } = useToggleLike(toggleProps);
   const controls = useAnimation();
 
   const MotionBox = motion(chakra.div);
@@ -33,7 +35,6 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
           }}
           animate={controls}
           transition={{ duration: 0.2 }}
-          _disabled={isMutating}
         >
           <Icon
             as={isLiked ? AiFillHeart : AiOutlineHeart}

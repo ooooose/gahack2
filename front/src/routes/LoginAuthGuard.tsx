@@ -1,12 +1,19 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
+import { useAuthUserState } from '../globalStates/atoms/authUserState';
+import TopPage from '../components/pages/TopPage';
 
-type LoginRouteGuardProps = {
-  children: ReactElement;
+type LoginAuthGuardProps = {
+  component: React.ReactNode;
 };
 
 // 認証状況によりハンドリングすること。
-const LoginAuthGuard = ({ children }: LoginRouteGuardProps) => {
-  return <>{children}</>;
+const LoginAuthGuard = ({ component }: LoginAuthGuardProps) => {
+  const currentUser = useAuthUserState();
+  if (currentUser.authUserType?.uid) {
+    return <>{component}</>
+  } else {
+    return <TopPage />
+  }
 };
 
 export default LoginAuthGuard;

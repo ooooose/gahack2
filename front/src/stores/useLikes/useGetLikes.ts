@@ -2,7 +2,7 @@ import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
 
 type LikeType = {
-  likeId: number;
+  like_id: number;
   liked: boolean;
   likes: number;
 };

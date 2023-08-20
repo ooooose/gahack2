@@ -8,6 +8,7 @@ import AboutPage from '../components/pages/AboutPage';
 import PrivacyPolicy from '../components/pages/PrivacyPolicy';
 import TermsOfService from '../components/pages/TermsOfService';
 import { useAuthUserMutators } from '../globalStates/atoms/authUserState';
+import LoginAuthGuard from './LoginAuthGuard';
 
 const AppRoutes = () => {
   const { hash, pathname } = useLocation();
@@ -28,7 +29,7 @@ const AppRoutes = () => {
       ) : (
         <Routes>
           <Route path="/" element={<TopPage />} />
-          <Route path="/pictures" element={<PicturesPage />} />
+          <Route path="/pictures" element={<LoginAuthGuard component={<PicturesPage />} />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />

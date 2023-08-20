@@ -3,18 +3,20 @@ import { apiClient } from '../../utils/api-client';
 
 type props = {
   isLiked: boolean;
-  pictureId: number;
   likeId: number;
+  params: {
+    picture_id: number;
+  };
 };
 
 export const useToggleLike = ({
   isLiked,
-  pictureId,
   likeId,
+  params,
 }: props): SWRMutationResponse => {
   return useSWRMutation(
-    isLiked ? `/likes/${likeId}` : `/likes/${pictureId}`,
-    (endpoint) =>
-      apiClient.apiPostOrDelete(endpoint, isLiked).then((response) => response),
+    isLiked ? `/likes/${likeId}` : '/likes',
+    (endpoint: string) =>
+      apiClient.apiPostOrDelete(endpoint, isLiked, params).then((response) => response),
   );
 };
