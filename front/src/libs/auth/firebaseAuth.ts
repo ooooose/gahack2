@@ -1,13 +1,8 @@
 import { useEffect, useState } from 'react';
 import { signOut as _signOut, User, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/initFirebase';
-import { AuthUser } from '../../types/users';
 import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
-
-type authUserMutator = {
-  setAuthUser: (authUserType: AuthUser | null) => void;
-};
 
 export const useFirebaseAuth = () => {
   const setCurrentUser = useAuthUserMutators();

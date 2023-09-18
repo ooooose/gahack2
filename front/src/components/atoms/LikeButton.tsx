@@ -59,7 +59,9 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
           />
         </MotionBox>
       </Tooltip>
-      <Text pointerEvents={'none'} fontSize={12}>{likes}</Text>
+      <Text pointerEvents={'none'} fontSize={12}>
+        {likes}
+      </Text>
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { usePictures } from '../../stores/usePictures';
-import { Box, Center, Flex, Stack } from '@chakra-ui/react';
+import { Box, Center, Stack } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
 import Like from '../molecules/Like';
@@ -13,7 +13,7 @@ function PicturesPage() {
   return (
     <>
       {/* 幅によって並ぶ個数を変えたい */}
-      <Stack direction={['column', 'row']} >
+      <Stack direction={['column', 'row']}>
         {pictures.map((picture) => (
           <Center
             key={picture.id}
@@ -27,12 +27,21 @@ function PicturesPage() {
             <Box h={'30px'}>
               <Picture />
             </Box>
-            <Box position={'absolute'} zIndex={5} bottom={3} gap={3} width={'75%'}>
+            <Box
+              position={'absolute'}
+              zIndex={5}
+              bottom={3}
+              gap={3}
+              width={'75%'}
+            >
               <Box float={'left'}>
                 <Text>{picture.image}</Text>
               </Box>
               <Box float={'right'}>
-                <Like picture={picture} currentUser={currentUser.authUserType} />
+                <Like
+                  picture={picture}
+                  currentUser={currentUser.authUserType}
+                />
                 {/* ここにコメントをいれる */}
               </Box>
             </Box>
