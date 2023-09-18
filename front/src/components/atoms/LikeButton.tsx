@@ -13,25 +13,29 @@ type LikeButtonProps = {
   likes: number;
 };
 
-const toggleLike = async (likeId: number, isLiked: boolean, params: { picture_id: number }) => {
-  isLiked ? 
-  await apiClient.apiDelete(`/likes/${likeId}`, params) :
-  await apiClient.apiPost(`/likes`, params)
-}
+const toggleLike = async (
+  likeId: number,
+  isLiked: boolean,
+  params: { picture_id: number },
+) => {
+  isLiked
+    ? await apiClient.apiDelete(`/likes/${likeId}`, params)
+    : await apiClient.apiPost(`/likes`, params);
+};
 
 const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
   const { mutate } = useSWRConfig();
   const handleToggleLike = async () => {
     const params = {
-      picture_id:  picture.id,
-    }
+      picture_id: picture.id,
+    };
     try {
-      await toggleLike(likeId, isLiked, params)
-      mutate(`/pictures/${picture.id}/likes`)
+      await toggleLike(likeId, isLiked, params);
+      mutate(`/pictures/${picture.id}/likes`);
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
   const controls = useAnimation();
 
   const MotionBox = motion(chakra.div);
@@ -42,7 +46,7 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
         <MotionBox
           cursor="pointer"
           onClick={() => {
-            handleToggleLike()
+            handleToggleLike();
           }}
           animate={controls}
           transition={{ duration: 0.2 }}

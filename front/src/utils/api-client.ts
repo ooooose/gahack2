@@ -60,7 +60,7 @@ class ApiClient {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
-      data: body
+      data: body,
     };
     return await this.axios.delete<T>(`${url}`, config);
   }
