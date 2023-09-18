@@ -53,13 +53,14 @@ class ApiClient {
     return await this.axios.put<T>(`${url}`, body, config);
   }
 
-  async apiDelete<T>(url: string): Promise<AxiosResponse<T>> {
+  async apiDelete<T>(url: string, body = {}): Promise<AxiosResponse<T>> {
     const auth = getAuth();
     const idToken = await auth.currentUser?.getIdToken();
     const config = {
       headers: {
         authorization: `Bearer ${idToken}`,
       },
+      data: body
     };
     return await this.axios.delete<T>(`${url}`, config);
   }
