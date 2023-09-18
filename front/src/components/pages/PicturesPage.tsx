@@ -4,6 +4,7 @@ import { Box, Center, Stack } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
 import Like from '../molecules/Like';
+import Comment from '../molecules/Comment';
 import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 function PicturesPage() {
@@ -37,12 +38,15 @@ function PicturesPage() {
               <Box float={'left'}>
                 <Text>{picture.image}</Text>
               </Box>
-              <Box float={'right'}>
+              <Box float={'right'} display={'flex'} gap={3}>
                 <Like
                   picture={picture}
                   currentUser={currentUser.authUserType}
                 />
-                {/* ここにコメントをいれる */}
+                <Comment
+                  picture={picture}
+                  currentUser={currentUser.authUserType}
+                />
               </Box>
             </Box>
           </Center>
