@@ -15,7 +15,6 @@ const AppRoutes = () => {
   const setCurrentUser = useAuthUserMutators();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading } = useFirebaseAuth(setCurrentUser);
-  console.log(isLoading);
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
@@ -25,7 +24,7 @@ const AppRoutes = () => {
   return (
     <>
       {isLoading ? (
-        <p>...loading</p>
+        <p>Loading...</p>
       ) : (
         <Routes>
           <Route path="/" element={<TopPage />} />

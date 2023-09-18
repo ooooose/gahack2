@@ -53,13 +53,13 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
         >
           <Icon
             as={isLiked ? AiFillHeart : AiOutlineHeart}
-            mr="2.5"
-            fontSize="22px"
+            mr="1"
+            fontSize="20px"
             color={isLiked ? 'red.400' : ''}
           />
         </MotionBox>
       </Tooltip>
-      <Text pointerEvents={'none'}>{likes}</Text>
+      <Text pointerEvents={'none'} fontSize={12}>{likes}</Text>
     </Box>
   );
 };

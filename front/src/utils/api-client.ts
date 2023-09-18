@@ -11,7 +11,6 @@ class ApiClient {
         'X-Requested-With': 'XMLHttpRequest',
         'Access-Control-Allow-Credentials': true,
       },
-      // withCredentials: true,
       responseType: 'json',
     });
   }
