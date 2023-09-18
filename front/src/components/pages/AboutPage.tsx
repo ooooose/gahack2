@@ -1,10 +1,7 @@
 import React from 'react';
 import { Center } from '@chakra-ui/react';
-import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 function AboutPage() {
-  const currentUser = useAuthUserState();
-  console.log(currentUser);
   return (
     <>
       <Center>

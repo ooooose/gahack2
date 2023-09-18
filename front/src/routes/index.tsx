@@ -7,15 +7,12 @@ import TopPage from '../components/pages/TopPage';
 import AboutPage from '../components/pages/AboutPage';
 import PrivacyPolicy from '../components/pages/PrivacyPolicy';
 import TermsOfService from '../components/pages/TermsOfService';
-import { useAuthUserMutators } from '../globalStates/atoms/authUserState';
 import LoginAuthGuard from './LoginAuthGuard';
 
 const AppRoutes = () => {
   const { hash, pathname } = useLocation();
-  const setCurrentUser = useAuthUserMutators();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { isLoading } = useFirebaseAuth(setCurrentUser);
-  console.log(isLoading);
+  const { isLoading } = useFirebaseAuth();
   useEffect(() => {
     if (!hash) {
       window.scrollTo(0, 0);
@@ -25,7 +22,7 @@ const AppRoutes = () => {
   return (
     <>
       {isLoading ? (
-        <p>...loading</p>
+        <p>Loading...</p>
       ) : (
         <Routes>
           <Route path="/" element={<TopPage />} />

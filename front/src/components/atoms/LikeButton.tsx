@@ -3,7 +3,8 @@ import { Box, chakra, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Picture } from '../../types/pictures';
-import { useToggleLike } from '../../stores/useLikes/useToggleLike';
+import { useSWRConfig } from 'swr';
+import { apiClient } from '../../utils/api-client';
 
 type LikeButtonProps = {
   picture: Picture;
@@ -12,15 +13,29 @@ type LikeButtonProps = {
   likes: number;
 };
 
+const toggleLike = async (
+  likeId: number,
+  isLiked: boolean,
+  params: { picture_id: number },
+) => {
+  isLiked
+    ? await apiClient.apiDelete(`/likes/${likeId}`, params)
+    : await apiClient.apiPost(`/likes`, params);
+};
+
 const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
-  const toggleProps = {
-    isLiked: isLiked,
-    likeId: likeId,
-    params: {
+  const { mutate } = useSWRConfig();
+  const handleToggleLike = async () => {
+    const params = {
       picture_id: picture.id,
-    },
+    };
+    try {
+      await toggleLike(likeId, isLiked, params);
+      mutate(`/pictures/${picture.id}/likes`);
+    } catch (e) {
+      console.log(e);
+    }
   };
-  const { trigger } = useToggleLike(toggleProps);
   const controls = useAnimation();
 
   const MotionBox = motion(chakra.div);
@@ -31,20 +46,22 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
         <MotionBox
           cursor="pointer"
           onClick={() => {
-            trigger();
+            handleToggleLike();
           }}
           animate={controls}
           transition={{ duration: 0.2 }}
         >
           <Icon
             as={isLiked ? AiFillHeart : AiOutlineHeart}
-            mr="2.5"
-            fontSize="22px"
+            mr="1"
+            fontSize="20px"
             color={isLiked ? 'red.400' : ''}
           />
         </MotionBox>
       </Tooltip>
-      <Text pointerEvents={'none'}>{likes}</Text>
+      <Text pointerEvents={'none'} fontSize={12}>
+        {likes}
+      </Text>
     </Box>
   );
 };

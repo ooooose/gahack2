@@ -1,16 +1,13 @@
 import React from 'react';
-
 import { Box, Drawer, DrawerContent, useDisclosure } from '@chakra-ui/react';
 import SidebarContent from '../organisms/SideBarContent';
 import NavBar from '../organisms/NavBar';
-import { useAuthUserMutators } from '../../globalStates/atoms/authUserState';
 import { useFirebaseAuth } from '../../libs/auth/firebaseAuth';
 import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 function Sidebar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const setCurrentUser = useAuthUserMutators();
-  const { logout } = useFirebaseAuth(setCurrentUser);
+  const { logout } = useFirebaseAuth();
   const currentUser = useAuthUserState();
   return (
     <>
