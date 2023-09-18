@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -7,32 +7,31 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
   Icon,
   useDisclosure,
   Box,
   Text,
   Tooltip,
-} from '@chakra-ui/react'
-import { BiComment } from 'react-icons/bi'
-import { Comment } from "../../types/comments";
+} from '@chakra-ui/react';
+import { BiComment } from 'react-icons/bi';
+import { Comment } from '../../types/comments';
 
 type Props = {
-  comments: Comment[]
-}
+  comments: Comment[];
+};
 
-const CommentModal = ({ comments } : Props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+const CommentModal = ({ comments }: Props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <Tooltip label="コメント" bg="gray.400" fontSize="11px">
         <Box display={'flex'} gap={1}>
-            <Icon 
-              as={BiComment}
-              fontSize={20}
-              onClick={onOpen}
-              cursor={'pointer'}
-            />
+          <Icon
+            as={BiComment}
+            fontSize={20}
+            onClick={onOpen}
+            cursor={'pointer'}
+          />
           <Text pointerEvents={'none'} fontSize={12}>
             {comments.length}
           </Text>
@@ -48,12 +47,8 @@ const CommentModal = ({ comments } : Props) => {
               {comments.map((comment, index) => (
                 <>
                   <Box key={index} m={3}>
-                    <Text>
-                      {comment.user.name}さん
-                    </Text>
-                    <Text>
-                      {comment.body}
-                    </Text>
+                    <Text>{comment.user.name}さん</Text>
+                    <Text>{comment.body}</Text>
                     {/* 右側にゴミ箱アイコンを設置予定 */}
                   </Box>
                   <hr />
@@ -68,7 +63,7 @@ const CommentModal = ({ comments } : Props) => {
         </ModalContent>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default CommentModal;
