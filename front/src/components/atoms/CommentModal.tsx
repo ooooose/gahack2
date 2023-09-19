@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Modal,
   ModalOverlay,
@@ -12,15 +12,34 @@ import {
   Box,
   Text,
   Tooltip,
+  Input,
+  Button,
 } from '@chakra-ui/react';
 import { BiComment } from 'react-icons/bi';
 import { Comment } from '../../types/comments';
+import { usePostComment } from '../../stores/useComments/usePostComment';
 
 type Props = {
+  pictureId: number
   comments: Comment[];
 };
 
-const CommentModal = ({ comments }: Props) => {
+const CommentModal = ({ comments, pictureId }: Props) => {
+  const [comment, setComment] = useState('');
+  const params = {
+    picture_id: pictureId,
+    body: comment,
+  }
+  const {trigger, isMutating } = usePostComment({ pictureId, params });
+  const submitComment = () => {
+    trigger();
+    setComment('');
+  }
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing || e.key !== 'Enter' || comment.length === 0) return
+    submitComment()
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -45,20 +64,42 @@ const CommentModal = ({ comments }: Props) => {
           <ModalBody>
             <Box w={'90%'} h={'50vh'} overflowX={'auto'}>
               {comments.map((comment, index) => (
-                <>
-                  <Box key={index} m={3}>
+                <Box key={comment.id}>
+                  <Box m={3}>
                     <Text>{comment.user.name}さん</Text>
                     <Text>{comment.body}</Text>
                     {/* 右側にゴミ箱アイコンを設置予定 */}
                   </Box>
                   <hr />
-                </>
+                </Box>
               ))}
             </Box>
           </ModalBody>
 
           <ModalFooter>
             {/* コメントフォームとSubmitボタンを設置予定 */}
+            <Box width={'100%'} mx={'auto'}>
+              <Input 
+                mb={2}
+                type='text'
+                placeholder='コメントを入力'
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+              <Button
+                float={'right'}
+                colorScheme='blue' 
+                type="submit" 
+                variant='solid' 
+                onClick={() => {
+                  submitComment()
+                }} 
+                isDisabled={comment === '' ? true : false} 
+                isLoading={isMutating} >
+              投稿する
+              </Button>
+            </Box>
           </ModalFooter>
         </ModalContent>
       </Modal>

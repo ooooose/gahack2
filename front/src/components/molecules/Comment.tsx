@@ -17,11 +17,11 @@ const Comment = ({ picture, currentUser }: Props) => {
     <>
       {currentUser !== null ? (
         <Box>
-          <CommentModal comments={comments} />
+          <CommentModal comments={comments} pictureId={picture.id} />
         </Box>
       ) : (
         <>
-          <Text>いいねできません</Text>
+          <Text>コメントできません</Text>
         </>
       )}
     </>
