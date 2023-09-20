@@ -12,7 +12,7 @@ type Props = {
 
 const Comment = ({ picture, currentUser }: Props) => {
   const { data: comments } = useGetComments({ pictureId: picture.id });
-  if (!comments) return <Spinner size='xs' />;
+  if (!comments) return <Spinner size="xs" />;
   return (
     <>
       {currentUser !== null ? (

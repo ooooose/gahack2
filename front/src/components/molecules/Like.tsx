@@ -13,7 +13,7 @@ type Props = {
 
 const Like = ({ picture, currentUser }: Props) => {
   const { data } = useGetLikes({ pictureId: picture.id });
-  if (!data) return <Spinner size='xs' />;
+  if (!data) return <Spinner size="xs" />;
   return (
     <>
       {currentUser !== null ? (

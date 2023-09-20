@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, chakra, Icon, Text, Tooltip, Button } from '@chakra-ui/react';
+import { Box, chakra, Icon, Text, Tooltip } from '@chakra-ui/react';
 import { motion, useAnimation } from 'framer-motion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { Picture } from '../../types/pictures';

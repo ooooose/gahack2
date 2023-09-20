@@ -67,7 +67,9 @@ const CommentModal = ({ comments, pictureId }: Props) => {
               {comments.map((comment) => (
                 <Box key={comment.id}>
                   <Box m={3}>
-                    <Text mb={2} fontWeight={'bold'}>{comment.user.name}さん</Text>
+                    <Text mb={2} fontWeight={'bold'}>
+                      {comment.user.name}さん
+                    </Text>
                     <Text>{comment.body}</Text>
                     {/* 右側にゴミ箱アイコンを設置予定 */}
                   </Box>
