@@ -63,11 +63,11 @@ const CommentModal = ({ comments, pictureId }: Props) => {
           <ModalHeader>コメント</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Box w={'90%'} h={'50vh'} overflowX={'auto'}>
+            <Box w={'100%'} h={'50vh'} overflowX={'auto'}>
               {comments.map((comment) => (
                 <Box key={comment.id}>
                   <Box m={3}>
-                    <Text>{comment.user.name}さん</Text>
+                    <Text mb={2} fontWeight={'bold'}>{comment.user.name}さん</Text>
                     <Text>{comment.body}</Text>
                     {/* 右側にゴミ箱アイコンを設置予定 */}
                   </Box>

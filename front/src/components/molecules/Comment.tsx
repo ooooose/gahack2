@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, Spinner } from '@chakra-ui/react';
 import CommentModal from '../atoms/CommentModal';
 import { Picture } from '../../types/pictures';
 import { AuthUser } from '../../types/users';
@@ -12,7 +12,7 @@ type Props = {
 
 const Comment = ({ picture, currentUser }: Props) => {
   const { data: comments } = useGetComments({ pictureId: picture.id });
-  if (!comments) return <div>Loading...</div>;
+  if (!comments) return <Spinner size='xs' />;
   return (
     <>
       {currentUser !== null ? (
