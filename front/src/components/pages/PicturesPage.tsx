@@ -4,7 +4,7 @@ import { Box, Center, Stack } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
 import Like from '../molecules/Like';
-import Comment from '../molecules/Comment';
+import Comments from '../molecules/Comments';
 import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 function PicturesPage() {
@@ -43,7 +43,7 @@ function PicturesPage() {
                   picture={picture}
                   currentUser={currentUser.authUserType}
                 />
-                <Comment
+                <Comments
                   picture={picture}
                   currentUser={currentUser.authUserType}
                 />

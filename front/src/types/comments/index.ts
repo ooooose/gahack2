@@ -4,7 +4,7 @@ import { User } from '../users';
 export type Comment = {
   id: number;
   body: string;
-  createdAt: string;
+  created_at: string;
   picture: Picture;
   user: User;
 };

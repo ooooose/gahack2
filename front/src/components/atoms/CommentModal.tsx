@@ -14,14 +14,16 @@ import {
   Tooltip,
   Input,
   Button,
+  HStack,
 } from '@chakra-ui/react';
 import { BiComment } from 'react-icons/bi';
-import { Comment } from '../../types/comments';
+import { Comment as CommentType } from '../../types/comments';
 import { usePostComment } from '../../stores/useComments/usePostComment';
+import Comment from './Comment';
 
 type Props = {
   pictureId: number;
-  comments: Comment[];
+  comments: CommentType[];
 };
 
 const CommentModal = ({ comments, pictureId }: Props) => {
@@ -65,20 +67,10 @@ const CommentModal = ({ comments, pictureId }: Props) => {
           <ModalBody>
             <Box w={'100%'} h={'50vh'} overflowX={'auto'}>
               {comments.map((comment) => (
-                <Box key={comment.id}>
-                  <Box m={3}>
-                    <Text mb={2} fontWeight={'bold'}>
-                      {comment.user.name}さん
-                    </Text>
-                    <Text>{comment.body}</Text>
-                    {/* 右側にゴミ箱アイコンを設置予定 */}
-                  </Box>
-                  <hr />
-                </Box>
+                <Comment comment={comment} key={comment.id} />
               ))}
             </Box>
           </ModalBody>
-
           <ModalFooter>
             {/* コメントフォームとSubmitボタンを設置予定 */}
             <Box width={'100%'} mx={'auto'}>

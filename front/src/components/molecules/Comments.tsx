@@ -10,7 +10,7 @@ type Props = {
   currentUser: AuthUser | null;
 };
 
-const Comment = ({ picture, currentUser }: Props) => {
+const Comments = ({ picture, currentUser }: Props) => {
   const { data: comments } = useGetComments({ pictureId: picture.id });
   if (!comments) return <Spinner size="xs" />;
   return (
@@ -28,4 +28,4 @@ const Comment = ({ picture, currentUser }: Props) => {
   );
 };
 
-export default Comment;
+export default Comments;
