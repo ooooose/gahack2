@@ -14,7 +14,6 @@ import {
   Tooltip,
   Input,
   Button,
-  HStack,
 } from '@chakra-ui/react';
 import { BiComment } from 'react-icons/bi';
 import { Comment as CommentType } from '../../types/comments';
