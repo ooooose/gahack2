@@ -1,5 +1,5 @@
 import React from 'react';
-import { usePictures } from '../../stores/usePictures';
+import { useGetPictures } from '../../stores/usePictures/useGetPictures';
 import { Box, Center, Stack } from '@chakra-ui/react';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
@@ -9,7 +9,7 @@ import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 
 function PicturesPage() {
   const currentUser = useAuthUserState();
-  const { data: pictures } = usePictures();
+  const { data: pictures } = useGetPictures();
   if (!pictures) return <div>Loading...</div>;
   return (
     <>
