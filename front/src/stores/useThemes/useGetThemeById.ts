@@ -2,7 +2,7 @@ import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
 import { Theme } from '../../types/themes';
 
-export const useThemeByThemeId = ({
+export const useGetThemeById = ({
   themeId,
 }: {
   themeId: number;
