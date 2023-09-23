@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import { Box, Center, Stack } from '@chakra-ui/react';
-import { useAuthUserState } from "../../globalStates/atoms/authUserState";
-import { useGetThemes } from "../../stores/useThemes/useGetThemes";
-import Text from "../atoms/Text";
-import Picture from "../molecules/Picture";
-
+import { useAuthUserState } from '../../globalStates/atoms/authUserState';
+import { useGetThemes } from '../../stores/useThemes/useGetThemes';
+import Text from '../atoms/Text';
+import Picture from '../molecules/Picture';
 
 function ThemesPage() {
-  const currentUser = useAuthUserState()
+  const currentUser = useAuthUserState();
+  console.log(currentUser);
   const { data: themes } = useGetThemes();
-  if (!themes) return <div>Loading...</div>
+  if (!themes) return <div>Loading...</div>;
   return (
     <>
       <Stack direction={['column', 'row']}>
@@ -39,7 +39,7 @@ function ThemesPage() {
         ))}
       </Stack>
     </>
-  )
+  );
 }
 
 export default ThemesPage;
