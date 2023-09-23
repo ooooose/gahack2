@@ -66,7 +66,11 @@ const CommentModal = ({ comments, pictureId }: Props) => {
           <ModalBody>
             <Box w={'100%'} h={'50vh'} overflowX={'auto'}>
               {comments.map((comment) => (
-                <Comment key={comment.id} pictureId={pictureId} comment={comment} />
+                <Comment
+                  key={comment.id}
+                  pictureId={pictureId}
+                  comment={comment}
+                />
               ))}
             </Box>
           </ModalBody>

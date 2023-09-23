@@ -18,10 +18,10 @@ const Comment = ({ pictureId, comment }: Props) => {
     picture_id: pictureId,
   };
   const { mutate } = useSWRConfig();
-  const handleDeleteComment = async () => {  
+  const handleDeleteComment = async () => {
     try {
       if (confirm('本当に削除しますか？')) {
-        await useDeleteComment({ pictureId, comment, params});
+        await useDeleteComment({ pictureId, comment, params });
         mutate(`/pictures/${pictureId}/comments`);
       }
     } catch (e) {
@@ -40,12 +40,13 @@ const Comment = ({ pictureId, comment }: Props) => {
         </Box>
         <Box textAlign={'right'} mr={2}>
           {currentUser.authUserType?.uid === comment.user.uid ? (
-            <Icon 
+            <Icon
               as={BiTrash}
               onClick={handleDeleteComment}
-              mr="1" 
-              cursor={'pointer'} 
-              fontSize="20px" />
+              mr="1"
+              cursor={'pointer'}
+              fontSize="20px"
+            />
           ) : (
             <></>
           )}

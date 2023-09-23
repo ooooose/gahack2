@@ -1,4 +1,3 @@
-import useSWRMutation, { SWRMutationResponse } from 'swr/mutation';
 import { apiClient } from '../../utils/api-client';
 import { Comment } from '../../types/comments';
 
@@ -15,5 +14,7 @@ export const useDeleteComment = async ({
   comment,
   params,
 }: Props) => {
-  return await apiClient.apiDelete(`/pictures/${pictureId}/comments/${comment.id}`, params).then((response) => response)
+  return await apiClient
+    .apiDelete(`/pictures/${pictureId}/comments/${comment.id}`, params)
+    .then((response) => response);
 };
