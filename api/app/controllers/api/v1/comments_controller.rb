@@ -1,7 +1,7 @@
 class Api::V1::CommentsController < BaseController
   def index
     picture = Picture.find(params[:picture_id])
-    @comments = picture.comments
+    @comments = picture.comments.includes([:user])
 
     render json: @comments, each_serializer: Api::V1::CommentSerializer
   end

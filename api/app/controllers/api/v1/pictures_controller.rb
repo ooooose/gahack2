@@ -2,7 +2,7 @@ class Api::V1::PicturesController < BaseController
   before_action :set_picture, only: %i[show destroy]
 
   def index
-    pictures = Picture.includes(:user, :theme, :comments).all.page(params[:page]).per(6)
+    pictures = Picture.includes(:user, :theme, :comments, :likes).all.page(params[:page]).per(6)
     render json: pictures, status: :ok
   end
 
@@ -26,7 +26,7 @@ class Api::V1::PicturesController < BaseController
   end
 
   def likes
-    @picture = Picture.includes(:user, :theme).find(params[:picture_id])
+    @picture = Picture.find(params[:picture_id])
     like_id = @picture.likes.find_by(user_id: current_user.id)&.id
     liked = current_user.like?(@picture)
     likes = @picture.likes.length

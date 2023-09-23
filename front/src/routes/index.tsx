@@ -11,7 +11,6 @@ import LoginAuthGuard from './LoginAuthGuard';
 
 const AppRoutes = () => {
   const { hash, pathname } = useLocation();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { isLoading } = useFirebaseAuth();
   useEffect(() => {
     if (!hash) {

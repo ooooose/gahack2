@@ -16,7 +16,7 @@ const AppProvider = ({ children }: AppProviderProps) => {
         <ChakraProvider>
           <Router>
             <Sidebar />
-            <Center>{children}</Center>
+            <Center h="450px">{children}</Center>
             <Footer />
           </Router>
         </ChakraProvider>

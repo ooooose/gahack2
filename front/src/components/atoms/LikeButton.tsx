@@ -41,8 +41,8 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
   const MotionBox = motion(chakra.div);
 
   return (
-    <Box display="flex" alignItems="center" color="gray.500">
-      <Tooltip label="いいね" bg="gray.400" fontSize="11px">
+    <Tooltip label="いいね" bg="gray.400" fontSize="11px">
+      <Box display="flex">
         <MotionBox
           cursor="pointer"
           onClick={() => {
@@ -58,11 +58,11 @@ const LikeButton = ({ picture, likeId, isLiked, likes }: LikeButtonProps) => {
             color={isLiked ? 'red.400' : ''}
           />
         </MotionBox>
-      </Tooltip>
-      <Text pointerEvents={'none'} fontSize={12}>
-        {likes}
-      </Text>
-    </Box>
+        <Text pointerEvents={'none'} fontSize={12}>
+          {likes}
+        </Text>
+      </Box>
+    </Tooltip>
   );
 };
 
