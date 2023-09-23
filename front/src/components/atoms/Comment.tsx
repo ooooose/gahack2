@@ -32,7 +32,7 @@ const Comment = ({ pictureId, comment }: Props) => {
   return (
     <Box>
       <HStack justifyContent={'space-between'}>
-        <Box m={3} w={'300px'}>
+        <Box m={3} w={'280px'}>
           <Text mb={2} fontWeight={'bold'}>
             {comment.user.name}さん
           </Text>
