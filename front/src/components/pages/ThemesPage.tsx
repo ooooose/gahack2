@@ -4,6 +4,7 @@ import { useAuthUserState } from '../../globalStates/atoms/authUserState';
 import { useGetThemes } from '../../stores/useThemes/useGetThemes';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
+import { Link } from 'react-router-dom';
 
 function ThemesPage() {
   const currentUser = useAuthUserState();
@@ -24,7 +25,9 @@ function ThemesPage() {
             position={'relative'}
           >
             <Box h={'30px'}>
-              <Picture />
+              <Link to={`/themes/${theme.id}`}>
+                <Picture />
+              </Link>
             </Box>
             <Box
               position={'absolute'}
