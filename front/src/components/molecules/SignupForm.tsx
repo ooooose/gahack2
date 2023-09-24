@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box,
   FormControl,
@@ -9,7 +9,7 @@ import {
   Button,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 const SignupForm = () => {
   return (
@@ -18,7 +18,8 @@ const SignupForm = () => {
       bg={useColorModeValue('white', 'gray.700')}
       boxShadow={'lg'}
       mb={4}
-      p={8}>
+      p={8}
+    >
       <Stack spacing={2}>
         <FormControl id="name">
           <FormLabel>お名前</FormLabel>
@@ -40,20 +41,27 @@ const SignupForm = () => {
           <Link to={'/login'}>
             <Text color={'blue'}>ログインページへ</Text>
           </Link>
-          <Text fontSize={'14px'} mb={2}>プライバシーポリシー及び利用規約に<br />同意したものとみなします。</Text>
-          <Text textAlign={'right'} color={'blue.400'}>パスワードをお忘れですか?</Text>
+          <Text fontSize={'14px'} mb={2}>
+            プライバシーポリシー及び利用規約に
+            <br />
+            同意したものとみなします。
+          </Text>
+          <Text textAlign={'right'} color={'blue.400'}>
+            パスワードをお忘れですか?
+          </Text>
           <Button
             bg={'blue.400'}
             color={'white'}
             _hover={{
               bg: 'blue.500',
-            }}>
+            }}
+          >
             新規登録
           </Button>
         </Stack>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
 export default SignupForm;

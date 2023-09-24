@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box,
   FormControl,
@@ -9,7 +9,7 @@ import {
   Button,
   Text,
   useColorModeValue,
-} from '@chakra-ui/react'
+} from '@chakra-ui/react';
 
 const LoginForm = () => {
   return (
@@ -18,7 +18,8 @@ const LoginForm = () => {
       bg={useColorModeValue('white', 'gray.700')}
       boxShadow={'lg'}
       mb={4}
-      p={8}>
+      p={8}
+    >
       <Stack spacing={2}>
         <FormControl id="email">
           <FormLabel>メールアドレス</FormLabel>
@@ -32,19 +33,22 @@ const LoginForm = () => {
           <Link to={'/signup'}>
             <Text color={'blue'}>サインアップページへ</Text>
           </Link>
-          <Text textAlign={'right'} color={'blue.400'}>パスワードをお忘れですか?</Text>
+          <Text textAlign={'right'} color={'blue.400'}>
+            パスワードをお忘れですか?
+          </Text>
           <Button
             bg={'blue.400'}
             color={'white'}
             _hover={{
               bg: 'blue.500',
-            }}>
+            }}
+          >
             ログイン
           </Button>
         </Stack>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
 export default LoginForm;
