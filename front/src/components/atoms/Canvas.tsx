@@ -5,17 +5,16 @@ interface DrawingProps {
   height: number;
   lineWidth: number;
   strokeColor: string;
-  handleMouseDown: (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void
-  handleMouseUp: (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void
-  handleMouseMove: (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void
+  handleMouseDown: (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void;
+  handleMouseUp: (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void;
+  handleMouseMove: (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => void;
 }
 import useDrawing from '../../hooks/useDrawing';
 
-const Canvas: React.FC<DrawingProps> = ({ 
-  width, 
-  height}) => {
+const Canvas: React.FC<DrawingProps> = ({ width, height }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const { handleMouseDown, handleMouseUp, handleMouseMove } = useDrawing(canvasRef);
+  const { handleMouseDown, handleMouseUp, handleMouseMove } =
+    useDrawing(canvasRef);
 
   return (
     <canvas

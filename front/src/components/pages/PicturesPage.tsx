@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGetPictures } from '../../stores/usePictures/useGetPictures';
 import { Box, Center, Stack } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import Text from '../atoms/Text';
 import Picture from '../molecules/Picture';
 import Like from '../molecules/Like';
@@ -26,7 +27,9 @@ function PicturesPage() {
             position={'relative'}
           >
             <Box h={'30px'}>
-              <Picture />
+              <Link to={`/pictures/${picture.id}`}>
+                <Picture />
+              </Link>
             </Box>
             <Box
               position={'absolute'}

@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { useFirebaseAuth } from '../libs/auth/firebaseAuth';
 import PicturesPage from '../components/pages/PicturesPage';
+import PicturePage from '../components/pages/PicturePage';
 import ThemesPage from '../components/pages/ThemesPage';
 import ThemePage from '../components/pages/ThemePage';
 import TopPage from '../components/pages/TopPage';
@@ -30,6 +31,10 @@ const AppRoutes = () => {
           <Route
             path="/pictures"
             element={<LoginAuthGuard component={<PicturesPage />} />}
+          />
+          <Route
+            path="/pictures/:id"
+            element={<LoginAuthGuard component={<PicturePage />} />}
           />
           <Route
             path="/themes"
