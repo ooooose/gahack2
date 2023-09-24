@@ -1,19 +1,14 @@
-import React from "react";
-import { useAuthUserState } from "../../globalStates/atoms/authUserState";
-import {
-  Stack,
-  Text,
-  Box,
-  HStack,
-} from '@chakra-ui/react'
-import { Picture } from "../../types/pictures";
-import Comments from "./Comments";
-import Like from "./Like";
+import React from 'react';
+import { useAuthUserState } from '../../globalStates/atoms/authUserState';
+import { Stack, Text, Box, HStack } from '@chakra-ui/react';
+import { Picture } from '../../types/pictures';
+import Comments from './Comments';
+import Like from './Like';
 
 type Props = {
-  title: string
-  picture: Picture
-}
+  title: string;
+  picture: Picture;
+};
 
 const PictureMenu = ({ title, picture }: Props) => {
   const currentUser = useAuthUserState();
@@ -28,7 +23,8 @@ const PictureMenu = ({ title, picture }: Props) => {
         px={8}
         py={4}
         spacing={8}
-        align={'center'}>
+        align={'center'}
+      >
         <Box w={'300px'}>
           <Box>
             <HStack justifyContent={'space-between'}>
@@ -45,9 +41,7 @@ const PictureMenu = ({ title, picture }: Props) => {
               </Box>
             </HStack>
             <Box mt={3}>
-              <Text fontSize={14}>
-                {/* 作品の説明をおくよてい。 */}
-              </Text>
+              <Text fontSize={14}>{/* 作品の説明をおくよてい。 */}</Text>
             </Box>
             <HStack justifyContent={'space-between'} mt={2}>
               <Text fontSize={'14px'}>{picture.user.name} 作</Text>
@@ -57,7 +51,7 @@ const PictureMenu = ({ title, picture }: Props) => {
         </Box>
       </Stack>
     </Box>
-  )
-}
+  );
+};
 
 export default PictureMenu;

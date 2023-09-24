@@ -9,8 +9,8 @@ export type Picture = {
   frameId: number;
   created_at: string;
   comments?: Comment[];
-  theme: Theme
-  user: User
+  theme: Theme;
+  user: User;
   likes?: Like[];
 };
 

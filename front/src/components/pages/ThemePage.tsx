@@ -17,7 +17,11 @@ function ThemePage() {
         </Heading>
         <Stack direction={['column', 'row']}>
           {theme.pictures.map((picture) => (
-            <PictureSet key={picture.id} picture={picture} link={`/pictures/${picture.id}`} />
+            <PictureSet
+              key={picture.id}
+              picture={picture}
+              link={`/pictures/${picture.id}`}
+            />
           ))}
         </Stack>
       </VStack>

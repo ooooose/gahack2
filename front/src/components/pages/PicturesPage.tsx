@@ -11,7 +11,11 @@ function PicturesPage() {
       {/* 幅によって並ぶ個数を変えたい */}
       <Stack direction={['column', 'row']}>
         {pictures.map((picture) => (
-          <PictureSet key={picture.id} picture={picture} link={`/pictures/${picture.id}`} />
+          <PictureSet
+            key={picture.id}
+            picture={picture}
+            link={`/pictures/${picture.id}`}
+          />
         ))}
       </Stack>
     </>

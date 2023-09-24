@@ -9,7 +9,7 @@ import {
   BoxProps,
 } from '@chakra-ui/react';
 import { FiHome, FiTrendingUp, FiHeart, FiUser } from 'react-icons/fi';
-import { IoColorPaletteOutline } from 'react-icons/io5';
+// import { IoColorPaletteOutline } from 'react-icons/io5';
 import { IconType } from 'react-icons';
 import NavItem from '../molecules/NavItem';
 

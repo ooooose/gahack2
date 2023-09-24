@@ -5,7 +5,6 @@ import { VStack } from '@chakra-ui/react';
 import PictureMenu from '../molecules/PictureMenu';
 import Picture from '../molecules/Picture';
 
-
 function PicturePage() {
   const { id } = useParams<{ id: string }>();
   const pictureId = id ?? '';
