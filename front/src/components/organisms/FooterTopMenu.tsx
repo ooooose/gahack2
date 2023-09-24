@@ -5,12 +5,10 @@ import FooterRightSideMenu from '../molecules/FooterRightSideMenu';
 
 const FooterTopMenu = () => {
   return (
-    <>
-      <Box p={6}>
-        <Logo />
-        <FooterRightSideMenu />
-      </Box>
-    </>
+    <Box px={6}>
+      <Logo />
+      <FooterRightSideMenu />
+    </Box>
   );
 };
 

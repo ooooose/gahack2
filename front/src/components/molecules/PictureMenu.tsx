@@ -1,67 +1,63 @@
 import React from "react";
-
+import { useAuthUserState } from "../../globalStates/atoms/authUserState";
 import {
-  Flex,
   Stack,
-  Heading,
   Text,
-  Input,
-  Button,
-  Icon,
-  useColorModeValue,
+  Box,
+  HStack,
 } from '@chakra-ui/react'
+import { Picture } from "../../types/pictures";
+import Comments from "./Comments";
+import Like from "./Like";
 
+type Props = {
+  title: string
+  picture: Picture
+}
 
-const PictureMenu = () => {
+const PictureMenu = ({ title, picture }: Props) => {
+  const currentUser = useAuthUserState();
+  const object = new Date(picture.created_at);
+  const postedTime = object.toLocaleString();
   return (
-    <Flex
-      minH={'100vh'}
-      align={'center'}
-      justify={'center'}
-      py={12}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
+    <Box mt={'150px'}>
       <Stack
         boxShadow={'2xl'}
-        bg={useColorModeValue('white', 'gray.700')}
-        rounded={'xl'}
-        p={10}
+        border={'1px solid lightgray'}
+        bg={'white'}
+        px={8}
+        py={4}
         spacing={8}
         align={'center'}>
-        <Stack align={'center'} spacing={2}>
-          <Heading
-            textTransform={'uppercase'}
-            fontSize={'3xl'}
-            color={useColorModeValue('gray.800', 'gray.200')}>
-            Subscribe
-          </Heading>
-          <Text fontSize={'lg'} color={'gray.500'}>
-            Subscribe to our newsletter & stay up to date!
-          </Text>
-        </Stack>
-        <Stack spacing={4} direction={{ base: 'column', md: 'row' }} w={'full'}>
-          <Input
-            type={'text'}
-            placeholder={'john@doe.net'}
-            color={useColorModeValue('gray.800', 'gray.200')}
-            bg={useColorModeValue('gray.100', 'gray.600')}
-            rounded={'full'}
-            border={0}
-            _focus={{
-              bg: useColorModeValue('gray.200', 'gray.800'),
-              outline: 'none',
-            }}
-          />
-          <Button
-            bg={'blue.400'}
-            rounded={'full'}
-            color={'white'}
-            flex={'1 0 auto'}
-            _hover={{ bg: 'blue.500' }}
-            _focus={{ bg: 'blue.500' }}>
-            Subscribe
-          </Button>
-        </Stack>
+        <Box w={'300px'}>
+          <Box>
+            <HStack justifyContent={'space-between'}>
+              <Text fontSize={'18px'}>{title}</Text>
+              <Box float={'right'} display={'flex'} gap={3}>
+                <Like
+                  picture={picture}
+                  currentUser={currentUser.authUserType}
+                />
+                <Comments
+                  picture={picture}
+                  currentUser={currentUser.authUserType}
+                />
+              </Box>
+            </HStack>
+            <Box mt={3}>
+              <Text fontSize={14}>
+                {/* 作品の説明をおくよてい。 */}
+              </Text>
+            </Box>
+            <HStack justifyContent={'space-between'} mt={2}>
+              <Text fontSize={'14px'}>{picture.user.name} 作</Text>
+              <Text fontSize={'14px'}>{postedTime}</Text>
+            </HStack>
+          </Box>
+        </Box>
       </Stack>
-    </Flex>
+    </Box>
   )
 }
+
+export default PictureMenu;

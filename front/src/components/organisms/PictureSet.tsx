@@ -10,7 +10,7 @@ import { Picture as PictureType } from "../../types/pictures";
 
 type Props = {
   picture: PictureType
-  link: string | ''
+  link: string
 }
 
 const PictureSet = ({ picture, link }: Props) => {
@@ -27,13 +27,9 @@ const PictureSet = ({ picture, link }: Props) => {
         position={'relative'}
       >
         <Box h={'30px'}>
-          { link === '' ? (
+          <Link to={link}>
             <Picture />
-          ) : (
-            <Link to={link}>
-              <Picture />
-            </Link>
-          ) }
+          </Link>
         </Box>
         <Box
           position={'absolute'}

@@ -28,7 +28,7 @@ const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome, href: '/' },
   { name: 'Themes', icon: FiHome, href: '/themes' },
   { name: 'Profile', icon: FiUser, href: '/users' },
-  { name: 'Drawing', icon: IoColorPaletteOutline, href: '/pictures/new' },
+  // { name: 'Drawing', icon: IoColorPaletteOutline, href: '/pictures/new' },
   { name: 'Favourites', icon: FiHeart, href: '/likes' },
 ];
 

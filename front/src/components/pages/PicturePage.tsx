@@ -1,8 +1,10 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetPictureById } from '../../stores/usePictures/useGetPictureById';
-import { HStack } from '@chakra-ui/react';
-import PictureSet from '../organisms/PictureSet';
+import { VStack } from '@chakra-ui/react';
+import PictureMenu from '../molecules/PictureMenu';
+import Picture from '../molecules/Picture';
+
 
 function PicturePage() {
   const { id } = useParams<{ id: string }>();
@@ -10,9 +12,10 @@ function PicturePage() {
   const { data: picture } = useGetPictureById(pictureId);
   if (!picture) return <div>Loading...</div>;
   return (
-    <HStack>
-      <PictureSet picture={picture} link={''} />
-    </HStack>
+    <VStack h={'200px'}>
+      <Picture />
+      <PictureMenu title={picture.theme.title} picture={picture} />
+    </VStack>
   );
 }
 
