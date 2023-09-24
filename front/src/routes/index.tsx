@@ -7,6 +7,8 @@ import PicturePage from '../components/pages/PicturePage';
 import ThemesPage from '../components/pages/ThemesPage';
 import ThemePage from '../components/pages/ThemePage';
 import TopPage from '../components/pages/TopPage';
+import SignupPage from '../components/pages/SignupPage';
+import LoginPage from '../components/pages/LoginPage';
 import AboutPage from '../components/pages/AboutPage';
 import PrivacyPolicy from '../components/pages/PrivacyPolicy';
 import TermsOfService from '../components/pages/TermsOfService';
@@ -45,6 +47,8 @@ const AppRoutes = () => {
             element={<LoginAuthGuard component={<ThemePage />} />}
           />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
