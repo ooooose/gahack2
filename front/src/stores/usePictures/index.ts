@@ -1,1 +1,0 @@
-export { usePictures } from './usePictures';

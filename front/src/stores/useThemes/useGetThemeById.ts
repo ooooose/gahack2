@@ -2,17 +2,11 @@ import useSWR, { SWRResponse } from 'swr';
 import { apiClient } from '../../utils/api-client';
 import { Theme } from '../../types/themes';
 
-export const useThemeByThemeId = ({
-  themeId,
-}: {
-  themeId: number;
-}): SWRResponse<Theme, Error> => {
+export const useGetThemeById = (themeId: string): SWRResponse<Theme, Error> => {
   return useSWR(
-    themeId ? `/themes/${themeId}` : null,
+    `/themes/${themeId}`,
     (endpoint) =>
-      apiClient
-        .apiGet<{ theme: Theme }>(endpoint)
-        .then((result) => result.data.theme),
+      apiClient.apiGet<Theme>(endpoint).then((result) => result.data),
     {
       revalidateIfStale: false,
       revalidateOnFocus: false,

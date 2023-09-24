@@ -9,7 +9,7 @@ import {
   BoxProps,
 } from '@chakra-ui/react';
 import { FiHome, FiTrendingUp, FiHeart, FiUser } from 'react-icons/fi';
-import { IoColorPaletteOutline } from 'react-icons/io5';
+// import { IoColorPaletteOutline } from 'react-icons/io5';
 import { IconType } from 'react-icons';
 import NavItem from '../molecules/NavItem';
 
@@ -26,8 +26,9 @@ interface SidebarProps extends BoxProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Trending', icon: FiTrendingUp, href: '/pictures' },
   { name: 'Home', icon: FiHome, href: '/' },
+  { name: 'Themes', icon: FiHome, href: '/themes' },
   { name: 'Profile', icon: FiUser, href: '/users' },
-  { name: 'Drawing', icon: IoColorPaletteOutline, href: '/pictures/new' },
+  // { name: 'Drawing', icon: IoColorPaletteOutline, href: '/pictures/new' },
   { name: 'Favourites', icon: FiHeart, href: '/likes' },
 ];
 

@@ -8,8 +8,8 @@ const Footer = () => {
   return (
     <>
       <Border color={'black'} />
-      <Box w="100%" h="200px" bg={'gray.50'}>
-        <Box h={'150px'} p={3} opacity={'0.7'}>
+      <Box w="100%" h="150px" bg={'gray.50'}>
+        <Box h={'100px'} p={3} opacity={'0.7'}>
           <FooterTopMenu />
         </Box>
         <Box px={6}>
