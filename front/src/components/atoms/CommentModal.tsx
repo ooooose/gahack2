@@ -56,7 +56,12 @@ const CommentModal = ({ comments, pictureId }: Props) => {
   });
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.nativeEvent.isComposing || e.key !== 'Enter' || comment.length === 0 || comment.trim() === '')
+    if (
+      e.nativeEvent.isComposing ||
+      e.key !== 'Enter' ||
+      comment.length === 0 ||
+      comment.trim() === ''
+    )
       return;
     trigger();
     setComment('');
